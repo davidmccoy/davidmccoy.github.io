@@ -1,0 +1,171 @@
+h1 {
+  font-family: serif;
+}
+
+body {
+  font-family: Courier;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0px;
+}
+
+#wrapper {
+  width: 100%;
+}
+
+th {
+  border-collapse: collapse;
+  border-bottom: 1px black solid;
+  color: #0000EE;
+  font-size: 14px;
+  font-weight: normal;
+  text-decoration: underline;
+  padding-bottom: 10px;
+  text-align: left;
+  letter-spacing: 1px;
+
+}
+
+td {
+  padding: 5px;
+}
+
+#left {
+  width: 10%;
+}
+
+#name {
+  width: 30%;
+}
+
+#modified {
+  width: 20%;
+}
+
+#size {
+  width: 10%;
+}
+
+#description {
+  width: 30%;
+}
+
+#last td {
+  border-bottom: 1px black solid;
+}
+
+.hidden {
+  display: none;
+}
+
+tr.about {
+  display: none
+}
+
+tr.technologies {
+  display: none;
+}
+
+tr.portfolio {
+  display: none;
+}
+
+div.about {
+  width: 600px;
+  padding: 10px;
+  padding-left: 25px;
+}
+div.list-one {
+  width: 150px;
+  float: left;
+}
+
+div.list-two {
+  width: 150px;
+  float: left;
+}
+
+div.list-three {
+  width: 150px;
+  float: left;
+}
+
+div.list-four {
+  width: 150px;
+  float: left;
+}
+
+div.tdl {
+  padding: 10px;
+}
+
+#tdl-logo {
+  background-image: url("../assets/tdl-logo.jpg");
+  background-size: cover; 
+  height: 200px;
+  width: 245px;
+  margin-left: 25px;
+  float: left;
+  display: inline-block;
+}
+
+#tdl-info {
+  margin-left: 25px;
+  display: inline-block;
+  width: 325px;
+}
+
+div.hipsters {
+  padding: 10px;
+  clear: both;
+  height: 220px;
+}
+
+#hipsters-logo {
+  background-image: url("../assets/hipsters-logo.jpg");
+  background-size: cover; 
+  height: 220px;
+  width: 245px;
+  margin-left: 25px;
+  float: left;
+  display: inline-block;
+}
+
+#hipsters-info {
+  margin-left: 25px;
+  display: inline-block;
+  width: 325px;
+}
+
+h3 a {
+  text-decoration: none;
+  color: black;
+}
+
+h3 a:hover {
+  text-decoration: underline;
+  color: #0000EE;
+}
+
+div.twttr {
+  padding: 10px;
+  clear: both;
+}
+
+#twttr-logo {
+  background-image: url("../assets/twttr-logo.png");
+  background-size: cover; 
+  height: 155px;
+  width: 245px;
+  margin-left: 25px;
+  float: left;
+  display: inline-block;
+}
+
+#twttr-info {
+  margin-left: 25px;
+  display: inline-block;
+  width: 325px;
+}
