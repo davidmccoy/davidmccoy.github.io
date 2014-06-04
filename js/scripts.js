@@ -68,12 +68,12 @@ $(document).ready(function(){
     event.preventDefault();
     event.stopPropagation;
 
-    $(this).text("Index of /david mccoy/protocol droid/human-cyborg relations");
+    $(this).attr("style", "width: 850px").text("Index of /david mccoy/protocol droid/human-cyborg relations");
 
   }, function(event) {
     event.preventDefault();
     event.stopPropagation;
 
-    $(this).text("Index of /david mccoy/full-stack web developer");
+    $(this).attr("style", "width: 650px").text("Index of /david mccoy/full-stack web developer");
   });  
 });
