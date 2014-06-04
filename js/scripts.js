@@ -68,7 +68,7 @@ $(document).ready(function(){
     event.preventDefault();
     event.stopPropagation;
 
-    $(this).text("Index of /david mccoy/protocol droid");
+    $(this).text("Index of /david mccoy/protocol droid/human-cyborg relations");
 
   }, function(event) {
     event.preventDefault();
