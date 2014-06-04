@@ -72,6 +72,10 @@ tr.portfolio {
   display: none;
 }
 
+tr.find-me {
+  display: none;
+}
+
 div.about {
   width: 600px;
   padding: 10px;
