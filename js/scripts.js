@@ -28,7 +28,7 @@ $(document).ready(function(){
     }
 
     $(tech).slideToggle();
-  })
+  });
 
   $("tr#portfolio").click(function(event){
     event.preventDefault();
@@ -43,5 +43,20 @@ $(document).ready(function(){
     }
 
     $(portfolio).slideToggle();
-  })
+  });
+
+  $("tr#find-me").click(function(event){
+    event.preventDefault();
+    event.stopPropagation;
+
+    var findMe = $("tr.find-me");
+
+    if( $("tr#find-me").css("background-color") === "rgb(255, 255, 0)") {
+      $("tr#find-me").attr("style", "background-color: none");
+    } else {
+      $("tr#find-me").attr("style", "background-color: rgb(255, 255, 0)");
+    }
+
+    $(findMe).slideToggle();
+  });
 });
