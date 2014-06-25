@@ -78,9 +78,20 @@ tr.find-me {
 }
 
 div.about {
-  width: 600px;
+  width: 325px;
   padding: 10px;
   padding-left: 25px;
+  display: inline-block;
+}
+div.headshot {
+  background-image: url("../assets/headshot.jpg");
+  background-size: cover;
+  width: 245px;
+  height: 245px;
+  display: inline-block;
+  float: left;
+  margin: 10px;
+  margin-left: 25px;
 }
 div.list-one {
   width: 150px;
