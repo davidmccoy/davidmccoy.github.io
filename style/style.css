@@ -61,6 +61,10 @@ td {
   display: none;
 }
 
+tr.active {
+  background: rgb(255, 255, 0);
+}
+
 tr.about {
   display: none
 }
