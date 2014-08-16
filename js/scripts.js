@@ -71,6 +71,7 @@ $(document).ready(function(){
 
     // clear previous project info
     if ($('.project_info_display') && !!animateInfo) {
+      $('.project_info_display').children().slideUp('fast')
       $('.project_info_display').slideUp('fast', function(){
         $(this).remove();
       });
@@ -107,6 +108,7 @@ $(document).ready(function(){
 
     // create click event to close info
     $(closeInfo).click(function(event) {
+      $('.project_info_display').children().hide()
       $('.project_info_display').slideUp('fast', function(){
         $(this).remove();
       });
@@ -118,7 +120,10 @@ $(document).ready(function(){
     
     // only slide down if it's in a new row
     if (animateInfo) {
-      $(newInfo).slideDown('fast');
+      $(newInfo).children().hide();
+      $(newInfo).slideDown('fast', function() {
+        $(newInfo).children().show();
+      });
     } else {
       $(newInfo).show();
     };
