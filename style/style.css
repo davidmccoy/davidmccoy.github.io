@@ -62,7 +62,7 @@ td {
 }
 
 tr.active {
-  background: rgb(255, 255, 0);
+  background: rgb(240,240,240);
 }
 
 tr.about {
@@ -117,46 +117,52 @@ div.list-four {
   float: left;
 }
 
-div.tdl {
-  padding: 10px;
+div.portfolio {
+  width: 855px;
+  font-size: 0;
 }
 
-#tdl-logo {
-  background-image: url("../assets/tdl-logo.jpg");
-  background-size: cover; 
+div.project_container {
+  display: inline-block;
   height: 200px;
   width: 245px;
-  margin-left: 25px;
-  float: left;
-  display: inline-block;
+  padding: 20px 20px 15px 20px;
+  border-bottom: 5px solid white;
 }
 
-#tdl-info {
-  margin-left: 25px;
-  display: inline-block;
-  width: 325px;
+div.project_container:hover {
+  border-bottom: 5px solid rgba(0,0,238,.8);
 }
 
-div.hipsters {
-  padding: 10px;
-  clear: both;
-  height: 220px;
+div.project_container.active {
+  border-bottom: 5px solid rgba(0,0,238,.8);
 }
 
-#hipsters-logo {
-  background-image: url("../assets/hipsters-logo.jpg");
-  background-size: cover; 
-  height: 220px;
+div.project_logo {
+  position: relative;
+  height: 200px;
   width: 245px;
-  margin-left: 25px;
-  float: left;
-  display: inline-block;
 }
 
-#hipsters-info {
-  margin-left: 25px;
-  display: inline-block;
-  width: 325px;
+div.project_logo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200px;
+  width: 245px;
+}
+
+div.project_info {
+  display: none;
+}
+
+div.project_info_display {
+  position: relative;
+  height: 175px;
+  width: 815px;
+  padding: 5px 20px 10px 20px;
+  background: rgb(240,240,240);
+  font-size: 16px;
 }
 
 h3 a {
@@ -167,25 +173,4 @@ h3 a {
 h3 a:hover {
   text-decoration: underline;
   color: #0000EE;
-}
-
-div.twttr {
-  padding: 10px;
-  clear: both;
-}
-
-#twttr-logo {
-  background-image: url("../assets/twttr-logo.png");
-  background-size: cover; 
-  height: 155px;
-  width: 245px;
-  margin-left: 25px;
-  float: left;
-  display: inline-block;
-}
-
-#twttr-info {
-  margin-left: 25px;
-  display: inline-block;
-  width: 325px;
 }
