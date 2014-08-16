@@ -133,7 +133,7 @@ div.project_container {
 div.project_container:hover {
   border-bottom: 5px solid rgba(0,0,238,.8);
   transition: all .5s;
-  -webkit-transition: all .5s;
+  -webkit-transition: all .2s;
 }
 
 div.project_container.active {
