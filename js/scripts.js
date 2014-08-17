@@ -34,7 +34,7 @@ $(document).ready(function(){
 
   // set initial value of columns based on window width
   if (width >= 1200) {
-    columns = 4;
+    columns = 3;
   } else if (width >= 840) {
     columns = 3;
   } else {
