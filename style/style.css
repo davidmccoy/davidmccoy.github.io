@@ -130,6 +130,10 @@ div.project_container {
   border-bottom: 5px solid white;
 }
 
+div#twttr.project_container {
+  background: #323232;
+}
+
 div.project_container:hover {
   border-bottom: 5px solid rgba(0,0,238,.8);
   transition: all .5s;
