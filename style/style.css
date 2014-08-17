@@ -12,6 +12,16 @@ table {
   border-spacing: 0px;
 }
 
+a {
+  color: #0000EE;
+  font-weight: lighter;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: rgb(50,50,50);
+}
+
 #wrapper {
   width: 100%;
 }
@@ -120,6 +130,7 @@ div.list-four {
 div.portfolio {
   width: 855px;
   font-size: 0;
+  padding: 10px 0;
 }
 
 div.project_container {
@@ -135,13 +146,13 @@ div#twttr.project_container {
 }
 
 div.project_container:hover {
-  border-bottom: 5px solid rgba(0,0,238,.8);
+  border-bottom: 5px solid rgba(0,0,238,.7);
   transition: all .5s;
   -webkit-transition: all .2s;
 }
 
 div.project_container.active {
-  border-bottom: 5px solid rgba(0,0,238,.8);
+  border-bottom: 5px solid rgba(0,0,238,.7);
 }
 
 div.project_logo {
@@ -169,14 +180,4 @@ div.project_info_display {
   padding: 5px 20px 10px 20px;
   background: rgb(240,240,240);
   font-size: 16px;
-}
-
-h3 a {
-  text-decoration: none;
-  color: black;
-}
-
-h3 a:hover {
-  text-decoration: underline;
-  color: #0000EE;
 }

@@ -55,6 +55,16 @@ $(document).ready(function(){
 
     // remove other active classes
     if ($('div.active')) {
+
+      if ($(this).hasClass('active')) {
+        $('.project_info_display').children().hide()
+        $('.project_info_display').slideUp('fast', function(){
+          $(this).remove();
+        });
+        $('div.active').removeClass('active');
+        return;
+      }
+
       // don't animate diplay project info if the new project is in the same row
       var oldIndex = Array.prototype.indexOf.call(projects, $('div.active')[0]) + 1;
       if (Math.floor((index - 1) / columns) != Math.floor((oldIndex - 1) / columns)) {
