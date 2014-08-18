@@ -173,10 +173,10 @@ $(document).ready(function(){
 
     if (width >= 920) {
 
-      $('#title').attr("style", "width: 850px").text("Index of /david mccoy/protocol droid/human-cyborg relations");
+      $('#title').attr("style", "width: 850px").text("Index of /david mccoy/full-stack web developer");
 
     } else {
-      $('#title').attr("style", "width: 100%").text("Index of /david mccoy/protocol droid/human-cyborg relations");
+      $('#title').attr("style", "width: 100%").text("Index of /david mccoy/full-stack web developer");
     };
     
   });
