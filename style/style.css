@@ -49,7 +49,7 @@ td {
 }
 
 #name {
-  width: 30%;
+  width: 25%;
 }
 
 #modified {
@@ -61,7 +61,11 @@ td {
 }
 
 #description {
-  width: 30%;
+  width: 25%;
+}
+
+#right {
+  width: 10%;
 }
 
 #last td {
@@ -132,6 +136,7 @@ div.portfolio {
   width: 855px;
   font-size: 0;
   padding: 10px 0;
+  margin: 0 auto;
 }
 
 div.project_container {
@@ -181,4 +186,33 @@ div.project_info_display {
   padding: 5px 20px 10px 20px;
   background: rgb(240,240,240);
   font-size: 16px;
+}
+
+@media (max-width:920px){
+
+  div.portfolio {
+    width: 570px;
+  }
+
+  div.project_info_display {
+    width: 530px;
+  }
+
+}
+
+@media (max-width:620px){
+
+  h1#title {
+    width: 464px;
+  }
+
+  div.portfolio {
+    width: 285px;
+  }
+
+  div.project_info_display {
+    width: 245px;
+    height: 250px;
+  }
+
 }

@@ -33,12 +33,12 @@ $(document).ready(function(){
   var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
   // set initial value of columns based on window width
-  if (width >= 1200) {
+  if (width >= 920) {
     columns = 3;
-  } else if (width >= 840) {
-    columns = 3;
-  } else {
+  } else if (width > 620) {
     columns = 2;
+  } else {
+    columns = 1;
   };
 
 
@@ -138,6 +138,81 @@ $(document).ready(function(){
       $(newInfo).show();
     };
   };
+
+  // reposition elements on resize
+  $(window).resize(function(event){
+
+    // reset initial value of columns based on window width
+    // IE8 also doesn't have window.innerWidth
+    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // reset the number of columns and adjust the location of the display bio
+    if (width >= 920 && (columns == 1 || columns == 2)) {
+      columns = 3;
+      
+      adjustInfoDisplay();
+    } else if (width >= 920) {
+
+      columns = 3;
+
+    } else if (width > 620 && (columns == 1 || columns == 3)){
+      
+      columns = 2;
+      adjustInfoDisplay();
+
+    } else if (width > 620) {
+
+      columns = 2;
+
+    } else if (width <= 620 && (columns == 2 || columns == 3)) {
+      columns = 1;
+      adjustInfoDisplay();
+    } else {
+      columns = 1;
+    };
+
+    if (width >= 920) {
+
+      $('#title').attr("style", "width: 850px").text("Index of /david mccoy/protocol droid/human-cyborg relations");
+
+    } else {
+      $('#title').attr("style", "width: 100%").text("Index of /david mccoy/protocol droid/human-cyborg relations");
+    };
+    
+  });
+
+
+  // changes the position of the profile_bio_display div based on recalculating the end of the rows and repositioning the div accordingly
+  var adjustInfoDisplay = function() {
+    
+    // get all projects
+    var projects = $('.project_container');
+    
+    // get the active project
+    var project = $('div.active')[0];
+    
+    // get the current display info
+    var displayInfo = $('.project_info_display');
+    
+    // find the index of clicked project (and normalize)
+    var index = Array.prototype.indexOf.call(projects, project) + 1;
+
+    // if statement that determines where the new info div should be inserted
+    if (index % columns === 0) {
+      // selected project is already at the end of a row
+      $(project).after(displayInfo);
+    } else if (index > projects.length - (projects.length % columns)) {
+      // selected project is in the final row
+      var lastProjectInTheRow = $(projects).last();
+      $(lastProjectInTheRow).after(displayInfo);
+    } else  {
+      // project is neither the end of a row nor in the last row
+      // find the index of the project at end of the row (and un-normalize)
+      var rowEnd = index + (columns - (index % columns)) - 1;
+      var lastProjectInTheRow = projects[rowEnd];
+      $(lastProjectInTheRow).after(displayInfo);
+    }
+  };
   
 
 
@@ -167,16 +242,28 @@ $(document).ready(function(){
   // // // title
 
   // changes "full-stack web developer" to "protocol droid" on hover
-  $("h1").hover(function(event) {
-    event.preventDefault();
+  $("#title").hover(function(event) {
     event.stopPropagation();
 
-    $(this).attr("style", "width: 850px").text("Index of /david mccoy/protocol droid/human-cyborg relations");
+    if (width >= 920) {
+
+      $(this).attr("style", "width: 850px").text("Index of /david mccoy/protocol droid/human-cyborg relations");
+
+    } else {
+      $(this).attr("style", "width: 100%").text("Index of /david mccoy/protocol droid/human-cyborg relations");
+    };
 
   }, function(event) {
-    event.preventDefault();
     event.stopPropagation();
 
-    $(this).attr("style", "width: 650px").text("Index of /david mccoy/full-stack web developer");
-  });  
+    if (width >= 920) {
+
+      $(this).attr("style", "width: 650px").text("Index of /david mccoy/full-stack web developer");
+  
+    } else {
+      $(this).attr("style", "width: 100%").text("Index of /david mccoy/full-stack web developer");
+    };
+
+  });
+  
 });
