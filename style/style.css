@@ -103,8 +103,9 @@ div.about {
   display: inline-block;
 }
 div.headshot {
-  background-image: url("../assets/headshot.jpg");
+  background-image: url("../assets/stacked.jpg");
   background-size: cover;
+  background-position: center;
   width: 245px;
   height: 245px;
   display: inline-block;
@@ -149,10 +150,6 @@ div.project_container {
   width: 245px;
   padding: 20px 20px 15px 20px;
   border-bottom: 5px solid white;
-}
-
-div#twttr.project_container {
-  background: #323232;
 }
 
 div.project_container:hover {
