@@ -1,10 +1,12 @@
 h1 {
   font-family: serif;
+  width: auto;
   width: 650px;
 }
 
 body {
   font-family: Courier;
+  word-wrap: break-word;
 }
 
 table {
@@ -204,7 +206,7 @@ div.project_info_display {
 @media (max-width:620px){
 
   h1#title {
-    width: 464px;
+    /*width: 464px;*/
   }
 
   div.portfolio {

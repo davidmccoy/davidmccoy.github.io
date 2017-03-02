@@ -1,0 +1,339 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 1, ../scss/_index.scss */
+body {
+  font-family: Courier;
+  font-size: 16px;
+  word-wrap: break-word;
+  line-height: normal;
+}
+/* line 6, ../scss/_index.scss */
+body #wrapper {
+  width: 100%;
+  padding-bottom: 100px;
+}
+/* line 10, ../scss/_index.scss */
+body #wrapper h1 {
+  font-family: serif;
+  font-size: 32px;
+  font-weight: bold;
+  width: auto;
+  margin: 22px 0px;
+  padding: 0px 10px;
+}
+/* line 19, ../scss/_index.scss */
+body #wrapper h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 18px 0px;
+}
+/* line 25, ../scss/_index.scss */
+body #wrapper ul {
+  list-style-type: disc;
+  margin: 16px 0px;
+  padding-left: 40px;
+}
+/* line 31, ../scss/_index.scss */
+body #wrapper table {
+  width: 100%;
+  border-spacing: 0px;
+}
+/* line 35, ../scss/_index.scss */
+body #wrapper table th {
+  border-collapse: collapse;
+  border-bottom: 1px black solid;
+  color: #0000EE;
+  font-size: 14px;
+  font-weight: normal;
+  text-decoration: underline;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  text-align: left;
+  letter-spacing: 1px;
+}
+/* line 47, ../scss/_index.scss */
+body #wrapper table th.modified, body #wrapper table th.size {
+  display: none;
+}
+/* line 51, ../scss/_index.scss */
+body #wrapper table th#left {
+  width: 10%;
+}
+/* line 55, ../scss/_index.scss */
+body #wrapper table th#name {
+  width: 25%;
+}
+/* line 59, ../scss/_index.scss */
+body #wrapper table th#modified {
+  width: 20%;
+}
+/* line 63, ../scss/_index.scss */
+body #wrapper table th#size {
+  width: 10%;
+}
+/* line 67, ../scss/_index.scss */
+body #wrapper table th#description {
+  width: 25%;
+}
+/* line 71, ../scss/_index.scss */
+body #wrapper table th#right {
+  width: 10%;
+}
+/* line 77, ../scss/_index.scss */
+body #wrapper table tr#last {
+  border-bottom: 1px black solid;
+}
+/* line 80, ../scss/_index.scss */
+body #wrapper table tr.active {
+  background: #f0f0f0;
+}
+/* line 84, ../scss/_index.scss */
+body #wrapper table tr.about, body #wrapper table tr.technologies, body #wrapper table tr.portfolio, body #wrapper table tr.find-me {
+  display: none;
+}
+/* line 86, ../scss/_index.scss */
+body #wrapper table tr.about div, body #wrapper table tr.technologies div, body #wrapper table tr.portfolio div, body #wrapper table tr.find-me div {
+  width: 80%;
+  margin: 0 auto;
+}
+/* line 89, ../scss/_index.scss */
+body #wrapper table tr.about div.about, body #wrapper table tr.technologies div.about, body #wrapper table tr.portfolio div.about, body #wrapper table tr.find-me div.about {
+  box-sizing: border-box;
+}
+/* line 96, ../scss/_index.scss */
+body #wrapper table td {
+  padding: 5px;
+  vertical-align: top;
+}
+/* line 100, ../scss/_index.scss */
+body #wrapper table td.modified, body #wrapper table td.size {
+  display: none;
+}
+/* line 104, ../scss/_index.scss */
+body #wrapper table td.table-spacer {
+  display: none;
+}
+/* line 107, ../scss/_index.scss */
+body #wrapper table td.table-spacer-secondary-break {
+  display: none;
+}
+/* line 111, ../scss/_index.scss */
+body #wrapper table td div.about {
+  width: 100%;
+  padding: 10px;
+  padding-left: 25px;
+  display: inline-block;
+}
+/* line 119, ../scss/_index.scss */
+body #wrapper table td div.headshot {
+  background-image: url("../assets/stacked.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 245px;
+  height: 245px;
+  display: inline-block;
+  float: left;
+  margin: 10px;
+  margin-left: 25px;
+}
+/* line 131, ../scss/_index.scss */
+body #wrapper table td div.list-one, body #wrapper table td div.list-two, body #wrapper table td div.list-three, body #wrapper table td div.list-four, body #wrapper table td div.list-five {
+  display: inline-block;
+}
+/* line 134, ../scss/_index.scss */
+body #wrapper table td div.list-one ul, body #wrapper table td div.list-two ul, body #wrapper table td div.list-three ul, body #wrapper table td div.list-four ul, body #wrapper table td div.list-five ul {
+  margin: 0px;
+}
+/* line 139, ../scss/_index.scss */
+body #wrapper table td div.portfolio {
+  width: 100%;
+  font-size: 0;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+/* line 146, ../scss/_index.scss */
+body #wrapper table td div.portfolio div.project_container {
+  display: block;
+  height: 200px;
+  width: 245px;
+  padding: 20px 20px 15px 20px;
+  border-bottom: 5px solid white;
+}
+/* line 153, ../scss/_index.scss */
+body #wrapper table td div.portfolio div.project_container:hover {
+  border-bottom: 5px solid rgba(0, 0, 238, 0.7);
+  transition: all .5s;
+  -webkit-transition: all .2s;
+}
+/* line 158, ../scss/_index.scss */
+body #wrapper table td div.portfolio div.project_container.active {
+  border-bottom: 5px solid rgba(0, 0, 238, 0.7);
+}
+/* line 162, ../scss/_index.scss */
+body #wrapper table td div.portfolio div.project_container .project_logo {
+  position: relative;
+  height: 200px;
+  width: 245px;
+}
+/* line 167, ../scss/_index.scss */
+body #wrapper table td div.portfolio div.project_container .project_logo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200px;
+  width: 245px;
+}
+/* line 175, ../scss/_index.scss */
+body #wrapper table td div.portfolio div.project_container div.project_info {
+  display: none;
+}
+/* line 181, ../scss/_index.scss */
+body #wrapper table td div.project_info_display {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  padding: 5px 20px 10px 20px;
+  background: #f0f0f0;
+  font-size: 16px;
+}
+/* line 190, ../scss/_index.scss */
+body #wrapper table td div.project_info_display p {
+  margin: 18px 0px;
+}
+/* line 197, ../scss/_index.scss */
+body #wrapper a {
+  color: #0000EE;
+  font-weight: lighter;
+}
+/* line 200, ../scss/_index.scss */
+body #wrapper a:hover {
+  text-decoration: underline;
+  color: #323232;
+}
+/* line 207, ../scss/_index.scss */
+body .hidden {
+  display: none;
+}
+
+@media screen and (min-width: 580px) {
+  /* line 217, ../scss/_index.scss */
+  body #wrapper table th.modified, body #wrapper table th.size, body #wrapper table td.modified, body #wrapper table td.size {
+    display: table-cell;
+  }
+  /* line 220, ../scss/_index.scss */
+  body #wrapper table th.table-spacer, body #wrapper table td.table-spacer {
+    display: table-cell;
+  }
+  /* line 223, ../scss/_index.scss */
+  body #wrapper table th div.technologies, body #wrapper table th div.find-me, body #wrapper table td div.technologies, body #wrapper table td div.find-me {
+    width: 100%;
+  }
+  /* line 226, ../scss/_index.scss */
+  body #wrapper table th div.portfolio, body #wrapper table td div.portfolio {
+    width: 580px;
+    font-size: 0;
+    padding: 10px 0;
+    margin: 0 auto;
+  }
+  /* line 233, ../scss/_index.scss */
+  body #wrapper table th div.portfolio div.project_container, body #wrapper table td div.portfolio div.project_container {
+    display: inline-block;
+  }
+}
+@media screen and (min-width: 768px) {
+  /* line 250, ../scss/_index.scss */
+  body #wrapper table tr.about td #about-wrapper {
+    width: 100%;
+  }
+  /* line 252, ../scss/_index.scss */
+  body #wrapper table tr.about td #about-wrapper .about {
+    width: 300px;
+  }
+  /* line 261, ../scss/_index.scss */
+  body #wrapper table td div.technologies div.list-one, body #wrapper table td div.technologies div.list-two, body #wrapper table td div.technologies div.list-three, body #wrapper table td div.technologies div.list-four, body #wrapper table td div.technologies div.list-five {
+    width: 160px;
+  }
+  /* line 264, ../scss/_index.scss */
+  body #wrapper table td div.technologies div.list-one ul, body #wrapper table td div.technologies div.list-two ul, body #wrapper table td div.technologies div.list-three ul, body #wrapper table td div.technologies div.list-four ul, body #wrapper table td div.technologies div.list-five ul {
+    margin: 16px 0px;
+  }
+}
+@media screen and (min-width: 920px) {
+  /* line 280, ../scss/_index.scss */
+  body #wrapper table th div.portfolio, body #wrapper table td div.portfolio {
+    width: 855px;
+  }
+}
+@media screen and (min-width: 1080px) {
+  /* line 294, ../scss/_index.scss */
+  body #wrapper table th.table-spacer-secondary-break, body #wrapper table td.table-spacer-secondary-break {
+    display: table-cell;
+  }
+}

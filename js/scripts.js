@@ -4,6 +4,7 @@ $(document).ready(function(){
 
   var columns;
   var animateInfo;
+  var colspan;
 
   // Hand-roll an artisinal Array.prototype.indexOf because IE8 doesn't support it
   if (!Array.prototype.indexOf)
@@ -11,14 +12,14 @@ $(document).ready(function(){
     Array.prototype.indexOf = function(elt /*, from*/)
     {
       var len = this.length >>> 0;
-  
+
       var from = Number(arguments[1]) || 0;
       from = (from < 0)
            ? Math.ceil(from)
            : Math.floor(from);
       if (from < 0)
         from += len;
-  
+
       for (; from < len; from++)
       {
         if (from in this &&
@@ -33,20 +34,28 @@ $(document).ready(function(){
   var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
   // set initial value of columns based on window width
-  if (width >= 920) {
+  if (width >= 1080) {
     columns = 3;
-  } else if (width > 620) {
+    colspan = 4;
+  } else if (width >= 920) {
+    columns = 3;
+    colspan = 6;
+    $('#portfolio-wrapper').attr('colspan', colspan);
+  } else if (width >= 580) {
     columns = 2;
+    colspan = 6;
+    $('#portfolio-wrapper').attr('colspan', colspan);
   } else {
     columns = 1;
+    colspan = 4;
   };
 
 
   // project click event handler
   $('.project_container').click(function(event){
 
-    event.stopPropogation; 
-    
+    event.stopPropogation;
+
     // get all projects
     var projects = $('.project_container');
 
@@ -68,7 +77,7 @@ $(document).ready(function(){
       // don't animate diplay project info if the new project is in the same row
       var oldIndex = Array.prototype.indexOf.call(projects, $('div.active')[0]) + 1;
       if (Math.floor((index - 1) / columns) != Math.floor((oldIndex - 1) / columns)) {
-        animateInfo = true; 
+        animateInfo = true;
       } else {
         animateInfo = false;
       };
@@ -107,7 +116,7 @@ $(document).ready(function(){
 
   });
 
-  // displays the info for a selected project 
+  // displays the info for a selected project
   var addInfo = function(selectedProject, lastProjectInTheRow) {
     // get info
     var oldInfo = $(selectedProject).children()[1];
@@ -124,10 +133,10 @@ $(document).ready(function(){
       });
       $('div.active').removeClass('active');
     });
-    
+
     // apend new info
     $(lastProjectInTheRow).after(newInfo);
-    
+
     // only slide down if it's in a new row
     if (animateInfo) {
       $(newInfo).children().hide();
@@ -144,31 +153,40 @@ $(document).ready(function(){
 
     // reset initial value of columns based on window width
     // IE8 also doesn't have window.innerWidth
-    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    
+    width = document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth;
+
     // reset the number of columns and adjust the location of the display bio
-    if (width >= 920 && (columns == 1 || columns == 2)) {
+    if (width >= 1080) {
       columns = 3;
-      
+      colspan = 4;
+      adjustInfoDisplay();
+    } else if (width >= 920 && (columns == 1 || columns == 2)) {
+      columns = 3;
+      colspan = 6;
       adjustInfoDisplay();
     } else if (width >= 920) {
 
       columns = 3;
+      colspan = 6;
+      adjustInfoDisplay();
+    } else if (width >= 580 && (columns == 1 || columns == 3)){
 
-    } else if (width > 620 && (columns == 1 || columns == 3)){
-      
       columns = 2;
+      colspan = 6;
       adjustInfoDisplay();
 
-    } else if (width > 620) {
+    } else if (width >= 580) {
 
       columns = 2;
+      colspan = 6;
 
-    } else if (width <= 620 && (columns == 2 || columns == 3)) {
+    } else if (width < 580 && (columns == 2 || columns == 3)) {
       columns = 1;
+      colspan = 4;
       adjustInfoDisplay();
     } else {
       columns = 1;
+      colspan = 4;
     };
 
     if (width >= 920) {
@@ -178,22 +196,22 @@ $(document).ready(function(){
     } else {
       $('#title').attr("style", "width: 100%").text("Index of /david mccoy/full-stack web developer");
     };
-    
+
   });
 
 
   // changes the position of the profile_bio_display div based on recalculating the end of the rows and repositioning the div accordingly
   var adjustInfoDisplay = function() {
-    
+
     // get all projects
     var projects = $('.project_container');
-    
+
     // get the active project
     var project = $('div.active')[0];
-    
+
     // get the current display info
     var displayInfo = $('.project_info_display');
-    
+
     // find the index of clicked project (and normalize)
     var index = Array.prototype.indexOf.call(projects, project) + 1;
 
@@ -212,13 +230,15 @@ $(document).ready(function(){
       var lastProjectInTheRow = projects[rowEnd];
       $(lastProjectInTheRow).after(displayInfo);
     }
+
+    $('#portfolio-wrapper').attr('colspan', colspan);
   };
-  
+
 
 
   // // // category table rows
 
-  // click event handlers for the category table rows 
+  // click event handlers for the category table rows
   $('.category').click(function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -259,11 +279,11 @@ $(document).ready(function(){
     if (width >= 920) {
 
       $(this).attr("style", "width: 650px").text("Index of /david mccoy/full-stack web developer");
-  
+
     } else {
       $(this).attr("style", "width: 100%").text("Index of /david mccoy/full-stack web developer");
     };
 
   });
-  
+
 });
