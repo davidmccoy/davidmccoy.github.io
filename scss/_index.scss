@@ -14,6 +14,9 @@ body {
       width: auto;
       margin: 22px 0px;
       padding: 0px 10px;
+      &#title {
+        display: inline-block;
+      }
     }
 
     h3 {
@@ -90,6 +93,16 @@ body {
               box-sizing: border-box;
             }
           }
+          div.td-inner-container {
+            display: none;
+          }
+        }
+
+        &.technologies {
+          font-size: 0;
+          ul {
+            font-size: 16px;
+          }
         }
       }
 
@@ -129,7 +142,7 @@ body {
         }
 
         div.list-one, div.list-two, div.list-three, div.list-four, div.list-five  {
-          // width: 150px;
+          vertical-align: top;
           display: inline-block;
           ul {
             margin: 0px;
@@ -142,6 +155,9 @@ body {
           font-size: 0;
           padding: 10px 0;
           margin: 0 auto;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
 
           div.project_container {
             display: block;
@@ -150,6 +166,7 @@ body {
             width: 245px;
             padding: 20px 20px 15px 20px;
             border-bottom: 5px solid white;
+            margin: 0 auto;
             &:hover {
               border-bottom: 5px solid rgba(0,0,238,.7);
               transition: all .5s;
@@ -163,14 +180,9 @@ body {
               position: relative;
               height: 200px;
               width: 245px;
-
-              img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 200px;
-                width: 245px;
-              }
+              background-size: cover;
+              background-position: center;
+              background-color: rgb(240,240,240);
             }
             div.project_info {
               display: none;
@@ -232,6 +244,7 @@ body {
 
             div.project_container {
               display: inline-block;
+              margin: 0;
             }
           }
         }
@@ -258,8 +271,8 @@ body {
         }
         td {
           div.technologies {
-            div.list-one, div.list-two, div.list-three, div.list-four, div.list-five  {
-              width: 160px;
+            div.list-one, div.list-two, div.list-three  {
+              width: 33%;
 
               ul {
                 margin: 16px 0px;

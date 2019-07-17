@@ -88,24 +88,28 @@ body #wrapper h1 {
   margin: 22px 0px;
   padding: 0px 10px;
 }
-/* line 19, ../scss/_index.scss */
+/* line 17, ../scss/_index.scss */
+body #wrapper h1#title {
+  display: inline-block;
+}
+/* line 22, ../scss/_index.scss */
 body #wrapper h3 {
   font-size: 18px;
   font-weight: bold;
   margin: 18px 0px;
 }
-/* line 25, ../scss/_index.scss */
+/* line 28, ../scss/_index.scss */
 body #wrapper ul {
   list-style-type: disc;
   margin: 16px 0px;
   padding-left: 40px;
 }
-/* line 31, ../scss/_index.scss */
+/* line 34, ../scss/_index.scss */
 body #wrapper table {
   width: 100%;
   border-spacing: 0px;
 }
-/* line 35, ../scss/_index.scss */
+/* line 38, ../scss/_index.scss */
 body #wrapper table th {
   border-collapse: collapse;
   border-bottom: 1px black solid;
@@ -118,80 +122,92 @@ body #wrapper table th {
   text-align: left;
   letter-spacing: 1px;
 }
-/* line 47, ../scss/_index.scss */
+/* line 50, ../scss/_index.scss */
 body #wrapper table th.modified, body #wrapper table th.size {
   display: none;
 }
-/* line 51, ../scss/_index.scss */
+/* line 54, ../scss/_index.scss */
 body #wrapper table th#left {
   width: 10%;
 }
-/* line 55, ../scss/_index.scss */
+/* line 58, ../scss/_index.scss */
 body #wrapper table th#name {
   width: 25%;
 }
-/* line 59, ../scss/_index.scss */
+/* line 62, ../scss/_index.scss */
 body #wrapper table th#modified {
   width: 20%;
 }
-/* line 63, ../scss/_index.scss */
+/* line 66, ../scss/_index.scss */
 body #wrapper table th#size {
   width: 10%;
 }
-/* line 67, ../scss/_index.scss */
+/* line 70, ../scss/_index.scss */
 body #wrapper table th#description {
   width: 25%;
 }
-/* line 71, ../scss/_index.scss */
+/* line 74, ../scss/_index.scss */
 body #wrapper table th#right {
   width: 10%;
 }
-/* line 77, ../scss/_index.scss */
+/* line 80, ../scss/_index.scss */
 body #wrapper table tr#last {
   border-bottom: 1px black solid;
 }
-/* line 80, ../scss/_index.scss */
+/* line 83, ../scss/_index.scss */
 body #wrapper table tr.active {
   background: #f0f0f0;
 }
-/* line 84, ../scss/_index.scss */
+/* line 87, ../scss/_index.scss */
 body #wrapper table tr.about, body #wrapper table tr.technologies, body #wrapper table tr.portfolio, body #wrapper table tr.find-me {
   display: none;
 }
-/* line 86, ../scss/_index.scss */
+/* line 89, ../scss/_index.scss */
 body #wrapper table tr.about div, body #wrapper table tr.technologies div, body #wrapper table tr.portfolio div, body #wrapper table tr.find-me div {
   width: 80%;
   margin: 0 auto;
 }
-/* line 89, ../scss/_index.scss */
+/* line 92, ../scss/_index.scss */
 body #wrapper table tr.about div.about, body #wrapper table tr.technologies div.about, body #wrapper table tr.portfolio div.about, body #wrapper table tr.find-me div.about {
   box-sizing: border-box;
 }
 /* line 96, ../scss/_index.scss */
+body #wrapper table tr.about div.td-inner-container, body #wrapper table tr.technologies div.td-inner-container, body #wrapper table tr.portfolio div.td-inner-container, body #wrapper table tr.find-me div.td-inner-container {
+  display: none;
+}
+/* line 101, ../scss/_index.scss */
+body #wrapper table tr.technologies {
+  font-size: 0;
+}
+/* line 103, ../scss/_index.scss */
+body #wrapper table tr.technologies ul {
+  font-size: 16px;
+}
+/* line 109, ../scss/_index.scss */
 body #wrapper table td {
   padding: 5px;
   vertical-align: top;
 }
-/* line 100, ../scss/_index.scss */
+/* line 113, ../scss/_index.scss */
 body #wrapper table td.modified, body #wrapper table td.size {
   display: none;
 }
-/* line 104, ../scss/_index.scss */
+/* line 117, ../scss/_index.scss */
 body #wrapper table td.table-spacer {
   display: none;
 }
-/* line 107, ../scss/_index.scss */
+/* line 120, ../scss/_index.scss */
 body #wrapper table td.table-spacer-secondary-break {
   display: none;
 }
-/* line 111, ../scss/_index.scss */
+/* line 124, ../scss/_index.scss */
 body #wrapper table td div.about {
   width: 100%;
   padding: 10px;
   padding-left: 25px;
   display: inline-block;
 }
-/* line 119, ../scss/_index.scss */
+/* line 132, ../scss/_index.scss */
 body #wrapper table td div.headshot {
   background-image: url("../assets/headshot.jpg");
   background-size: cover;
@@ -203,58 +219,58 @@ body #wrapper table td div.headshot {
   margin: 10px;
   margin-left: 25px;
 }
-/* line 131, ../scss/_index.scss */
+/* line 144, ../scss/_index.scss */
 body #wrapper table td div.list-one, body #wrapper table td div.list-two, body #wrapper table td div.list-three, body #wrapper table td div.list-four, body #wrapper table td div.list-five {
+  vertical-align: top;
   display: inline-block;
 }
-/* line 134, ../scss/_index.scss */
+/* line 147, ../scss/_index.scss */
 body #wrapper table td div.list-one ul, body #wrapper table td div.list-two ul, body #wrapper table td div.list-three ul, body #wrapper table td div.list-four ul, body #wrapper table td div.list-five ul {
   margin: 0px;
 }
-/* line 139, ../scss/_index.scss */
+/* line 152, ../scss/_index.scss */
 body #wrapper table td div.portfolio {
   width: 100%;
   font-size: 0;
   padding: 10px 0;
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-/* line 146, ../scss/_index.scss */
+/* line 162, ../scss/_index.scss */
 body #wrapper table td div.portfolio div.project_container {
   display: block;
   height: 200px;
   width: 245px;
   padding: 20px 20px 15px 20px;
   border-bottom: 5px solid white;
+  margin: 0 auto;
 }
-/* line 153, ../scss/_index.scss */
+/* line 170, ../scss/_index.scss */
 body #wrapper table td div.portfolio div.project_container:hover {
   border-bottom: 5px solid rgba(0, 0, 238, 0.7);
   transition: all .5s;
   -webkit-transition: all .2s;
 }
-/* line 158, ../scss/_index.scss */
+/* line 175, ../scss/_index.scss */
 body #wrapper table td div.portfolio div.project_container.active {
   border-bottom: 5px solid rgba(0, 0, 238, 0.7);
 }
-/* line 162, ../scss/_index.scss */
+/* line 179, ../scss/_index.scss */
 body #wrapper table td div.portfolio div.project_container .project_logo {
   position: relative;
   height: 200px;
   width: 245px;
+  background-size: cover;
+  background-position: center;
+  background-color: #f0f0f0;
 }
-/* line 167, ../scss/_index.scss */
-body #wrapper table td div.portfolio div.project_container .project_logo img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 200px;
-  width: 245px;
-}
-/* line 175, ../scss/_index.scss */
+/* line 187, ../scss/_index.scss */
 body #wrapper table td div.portfolio div.project_container div.project_info {
   display: none;
 }
-/* line 181, ../scss/_index.scss */
+/* line 193, ../scss/_index.scss */
 body #wrapper table td div.project_info_display {
   box-sizing: border-box;
   position: relative;
@@ -263,76 +279,77 @@ body #wrapper table td div.project_info_display {
   background: #f0f0f0;
   font-size: 16px;
 }
-/* line 190, ../scss/_index.scss */
+/* line 202, ../scss/_index.scss */
 body #wrapper table td div.project_info_display p {
   margin: 18px 0px;
 }
-/* line 197, ../scss/_index.scss */
+/* line 209, ../scss/_index.scss */
 body #wrapper a {
   color: #0000EE;
   font-weight: lighter;
 }
-/* line 200, ../scss/_index.scss */
+/* line 212, ../scss/_index.scss */
 body #wrapper a:hover {
   text-decoration: underline;
   color: #323232;
 }
-/* line 207, ../scss/_index.scss */
+/* line 219, ../scss/_index.scss */
 body .hidden {
   display: none;
 }
 
 @media screen and (min-width: 580px) {
-  /* line 217, ../scss/_index.scss */
+  /* line 229, ../scss/_index.scss */
   body #wrapper table th.modified, body #wrapper table th.size, body #wrapper table td.modified, body #wrapper table td.size {
     display: table-cell;
   }
-  /* line 220, ../scss/_index.scss */
+  /* line 232, ../scss/_index.scss */
   body #wrapper table th.table-spacer, body #wrapper table td.table-spacer {
     display: table-cell;
   }
-  /* line 223, ../scss/_index.scss */
+  /* line 235, ../scss/_index.scss */
   body #wrapper table th div.technologies, body #wrapper table th div.find-me, body #wrapper table td div.technologies, body #wrapper table td div.find-me {
     width: 100%;
   }
-  /* line 226, ../scss/_index.scss */
+  /* line 238, ../scss/_index.scss */
   body #wrapper table th div.portfolio, body #wrapper table td div.portfolio {
     width: 580px;
     font-size: 0;
     padding: 10px 0;
     margin: 0 auto;
   }
-  /* line 233, ../scss/_index.scss */
+  /* line 245, ../scss/_index.scss */
   body #wrapper table th div.portfolio div.project_container, body #wrapper table td div.portfolio div.project_container {
     display: inline-block;
+    margin: 0;
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 250, ../scss/_index.scss */
+  /* line 263, ../scss/_index.scss */
   body #wrapper table tr.about td #about-wrapper {
     width: 100%;
   }
-  /* line 252, ../scss/_index.scss */
+  /* line 265, ../scss/_index.scss */
   body #wrapper table tr.about td #about-wrapper .about {
     width: 300px;
   }
-  /* line 261, ../scss/_index.scss */
-  body #wrapper table td div.technologies div.list-one, body #wrapper table td div.technologies div.list-two, body #wrapper table td div.technologies div.list-three, body #wrapper table td div.technologies div.list-four, body #wrapper table td div.technologies div.list-five {
-    width: 160px;
+  /* line 274, ../scss/_index.scss */
+  body #wrapper table td div.technologies div.list-one, body #wrapper table td div.technologies div.list-two, body #wrapper table td div.technologies div.list-three {
+    width: 33%;
   }
-  /* line 264, ../scss/_index.scss */
-  body #wrapper table td div.technologies div.list-one ul, body #wrapper table td div.technologies div.list-two ul, body #wrapper table td div.technologies div.list-three ul, body #wrapper table td div.technologies div.list-four ul, body #wrapper table td div.technologies div.list-five ul {
+  /* line 277, ../scss/_index.scss */
+  body #wrapper table td div.technologies div.list-one ul, body #wrapper table td div.technologies div.list-two ul, body #wrapper table td div.technologies div.list-three ul {
     margin: 16px 0px;
   }
 }
 @media screen and (min-width: 920px) {
-  /* line 280, ../scss/_index.scss */
+  /* line 293, ../scss/_index.scss */
   body #wrapper table th div.portfolio, body #wrapper table td div.portfolio {
     width: 855px;
   }
 }
 @media screen and (min-width: 1080px) {
-  /* line 294, ../scss/_index.scss */
+  /* line 307, ../scss/_index.scss */
   body #wrapper table th.table-spacer-secondary-break, body #wrapper table td.table-spacer-secondary-break {
     display: table-cell;
   }

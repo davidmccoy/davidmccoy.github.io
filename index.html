@@ -58,7 +58,7 @@
           <td class="table-spacer">
           </td>
           <td colspan="4">
-            <div id="about-wrapper">
+            <div class="td-inner-container" id="about-wrapper">
               <div class="headshot">
               </div>
               <div class="about">
@@ -93,13 +93,10 @@
           <td class="table-spacer">
           </td>
           <td colspan="4">
-            <div class="find-me">
+            <div class="find-me td-inner-container">
               <ul>
                 <li>
                   <a href="https://twitter.com/dmccoy" target="_blank">@dmccoy</a>
-                </li>
-                <li>
-                  <a href="https://medium.com/@dmccoy">medium</a>
                 </li>
                 <li>
                   <a href="https://github.com/davidmccoy" target="_blank">github.com/davidmccoy</a>
@@ -109,6 +106,9 @@
                 </li>
                 <li>
                   <a href="http://thehipstermenace.tumblr.com/" target="_blank">tumblr</a>
+                </li>
+                <li>
+                  <a href="https://medium.com/@dmccoy">medium</a>
                 </li>
               </ul>
             </div>
@@ -125,13 +125,13 @@
             </a>
           </td>
           <td class="modified">
-            2017-07-20
+            2019-06-21
           </td>
           <td class="size">
             —
           </td>
           <td>
-            Both completed and in-progress
+            Completed and in progress
           </td>
           <td>
           </td>
@@ -140,25 +140,71 @@
           <td class="table-spacer-secondary-break">
           </td>
           <td colspan="4" id="portfolio-wrapper">
-            <div class="portfolio">
-              <div id="basira" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/basira-logo.jpg" />
+            <div class="portfolio td-inner-container">
+              <div id="fund_that_flip" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/fund-that-flip-logo.jpg')">
                 </div>
                 <div class="project_info">
                   <h3>
-                    <a href="http://basiraltd.com" target="_blank">
-                      basiraltd.com
+                    <a href="https://www.fundthatflip.com" target="_blank">
+                      fundthatflip.com
                     </a>
                   </h3>
                   <p>
-                    Basira is a quantitative finance and technology company. Their web presence is a light Sinatra app to store and serve index values that are displayed with a custom Chart.js graph.
+                    Fund That Flip is a real estate lender that provides loans to developers and allows customers to invest in those loans.
+                  </p>
+                  <p>
+                    Built with Rails and React.
+                  </p>
+                </div>
+              </div>
+              <div id="hipsters" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/hipsters-logo.png')">
+                </div>
+                <div class="project_info">
+                  <h3>
+                    <a href="https://www.hipstersofthecoast.com" target="_blank">
+                      hipstersofthecoast.com
+                    </a>
+                  </h3>
+                  <p>
+                    Hipsters of the Coast is a Brooklyn-based gaming site. Built on Wordpress with PHP and JavaScript. Serves nearly 100k users per month.
+                  </p>
+                </div>
+              </div>
+              <div id="thousand_leagues" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/thousand-leagues-logo.jpg')">
+                </div>
+                <div class="project_info">
+                  <h3>
+                    <a href="https://www.thousandleagues.com" target="_blank">
+                      thousandleagues.com
+                    </a>
+                  </h3>
+                  <p>
+                    Thousand Leagues is a first-of-its-kind esports fantasy app supporting Magic: the Gathering events and player stats. It supports live Snake drafting, as well as Pick X and Pick'em tournaments.
+                  </p>
+                  <p>
+                    Built with Rails and React.
+                  </p>
+                </div>
+              </div>
+              <div id="mtgcast" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/mtgcast-logo.png')">
+                </div>
+                <div class="project_info">
+                  <h3>
+                    <a href="https://www.mtgcast.com" target="_blank">
+                      mtgcast.com
+                    </a>
+                  </h3>
+                  <p>
+                    MTGCast is a gaming content creation platform that supports blogs and podcasts. Built on Rails.
                   </p>
                 </div>
               </div>
               <div id="mira" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/mira-logo.jpg" />
+                <div class="project_logo" style="background-image: url('assets/mira-logo.jpg')">
                 </div>
                 <div class="project_info">
                   <h3>
@@ -174,9 +220,25 @@
                   </p>
                 </div>
               </div>
+              <div id="basira" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/basira-logo.jpg')">
+                </div>
+                <div class="project_info">
+                  <h3>
+                    <a href="http://basiraltd.com" target="_blank">
+                      basiraltd.com
+                    </a>
+                  </h3>
+                  <p>
+                    Basira is a quantitative finance and technology company. Their web presence is a light Sinatra app to store and serve index values that are displayed with a custom Chart.js graph.
+                  </p>
+                  <p>
+                    <em>(This project is no longer active.)</em>
+                  </p>
+                </div>
+              </div>
               <div id="curate" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/curate-logo.jpg" />
+                <div class="project_logo" style="background-image: url('assets/curate-logo.jpg')">
                 </div>
                 <div class="project_info">
                   <h3>
@@ -185,13 +247,63 @@
                     </a>
                   </h3>
                   <p>
-                    Curate is a the first social media app designed for the Fine Artist. Built on Rails with a Semantic UI frontend and an API layer that interacts with an iOS app.
+                    Curate is a the first social media app designed for the Fine Artist. Built on Rails with a Semantic UI frontend and an API layer that supports an iOS app.
+                  </p>
+                  <p>
+                    <em>(This project is no longer active.)</em>
+                  </p>
+                </div>
+              </div>
+              <div id="tdl" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/tdl-logo.jpg')">
+                </div>
+                <div class="project_info">
+                  <h3>
+                    <a href="http://www.teamdraftleague.com" target="_blank">
+                      teamdraftleague.com
+                    </a>
+                  </h3>
+                  <p>
+                    Team Draft League is a tournament tracker with a robust Ruby on Rails back-end to create leagues, schedules, and track both player and team data. Advanced functionality restricted to registered users.
+                  </p>
+                </div>
+              </div>
+              <div id="casthaven" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/casthaven-logo.jpg')">
+                </div>
+                <div class="project_info">
+                  <h3>
+                    <a href="http://www.casthaven.com" target="_blank">
+                      casthaven.com
+                    </a>
+                  </h3>
+                  <p>
+                    Developed features and bug fixes for Casthaven, an e-commerce application for buying and selling Magic: the Gathering cards. Casthaven is built with Ruby on Rails and Angular.js.
+                  </p>
+                  <p>
+                    <em>(This project is no longer active.)</em>
+                  </p>
+                </div>
+              </div>
+              <div id="sportswire" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/sportswire-logo.jpg')">
+                </div>
+                <div class="project_info">
+                  <h3>
+                    <a href="http://sports-wire.herokuapp.com" target="_blank">
+                      sportswire.nyc
+                    </a>
+                  </h3>
+                  <p>
+                    SPORTSWIRE is the best way to stay on top of news about New York sports. Built on Rails and JavaScript with heavy use of the Twitter API.
+                  </p>
+                  <p>
+                    <em>(This project is no longer active.)</em>
                   </p>
                 </div>
               </div>
               <div id="alameda" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/alameda-logo.png" />
+                <div class="project_logo" style="background-image: url('assets/alameda-logo.png')">
                 </div>
                 <div class="project_info">
                   <h3>
@@ -205,74 +317,13 @@
                   <p>
                     Vive Alameda was built with HTML, CSS, and JS.
                   </p>
-                </div>
-              </div>
-              <div id="tdl" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/tdl-logo.jpg" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://www.teamdraftleague.com" target="_blank">
-                      teamdraftleague.com
-                    </a>
-                  </h3>
                   <p>
-                    Team Draft League is a tournament tracker with a robust Ruby on Rails back-end to create leagues, schedules, and track both player and team data. Advanced functionality restricted to registered users.
-                  </p>
-                  <p>
-                    See TDL on <a href="https://github.com/davidmccoy/teamdraftleague" target="_blank">Github</a>.
-                  </p>
-                </div>
-              </div>
-              <div id="hipsters" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/hipsters-logo.jpg" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://www.hipstersofthecoast.com" target="_blank">
-                      hipstersofthecoast.com
-                    </a>
-                  </h3>
-                  <p>
-                    Hipsters of the Coast is a Brooklyn-based Magic: the Gathering blog. Built on Wordpress with PHP and JavaScript. Handles 30,000+ visitors/month.
-                  </p>
-                </div>
-              </div>
-              <div id="casthaven" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/casthaven-logo.jpg" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://www.casthaven.com" target="_blank">
-                      casthaven.com
-                    </a>
-                  </h3>
-                  <p>
-                    Developed features and bug fixes for Casthaven, an e-commerce application for buying and selling Magic: the Gathering cards. Casthaven is built with Ruby on Rails and Angular.js.
-                  </p>
-                </div>
-              </div>
-              <div id="sportswire" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/sportswire-logo.jpg" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://sports-wire.herokuapp.com" target="_blank">
-                      sportswire.nyc
-                    </a>
-                  </h3>
-                  <p>
-                    SPORTSWIRE is the best way to stay on top of news about New York sports. Built on Rails and JavaScript with heavy use of the Twitter API.
+                    <em>(This project is no longer accessible.)</em>
                   </p>
                 </div>
               </div>
               <div id="screentexture" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/screentexture-logo.png" />
+                <div class="project_logo" style="background-image: url('assets/screentexture-logo.png')">
                 </div>
                 <div class="project_info">
                   <h3>
@@ -286,41 +337,30 @@
                   <p>
                     Screentexture is built with Ruby on Rails and JavaScript, and utilizes the YouTube and Chromecast APIs.
                   </p>
-                </div>
-              </div>
-              <div id="thirtylabs" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/30l-logo.png" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://www.thirtylabs.com" target="_blank">
-                      thirtylabs.com
-                    </a>
-                  </h3>
                   <p>
-                    Built a responsive landing page and job listings for Thirtylabs using Middleman.
+                    <em>(This project is no longer accessible.)</em>
                   </p>
                 </div>
               </div>
-              <div id="rockport" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/rockport-logo.png" />
+              <div id="rallyflix" class="project_container">
+                <div class="project_logo" style="background-image: url('assets/rallyflix-logo.jpg')">
                 </div>
                 <div class="project_info">
                   <h3>
-                    <a href="http://www.rockport.com" target="_blank">
-                      rockport.com
+                    <a href="http://www.rallyflix.herokuapp.com" target="_blank">
+                      rallyflix.com
                     </a>
                   </h3>
                   <p>
-                    Updated Rockport's homepage, built homepage modules, and developed various landing pages.
+                    Built a Rails API for RallyFlix, a Product Hunt-style movie screening platform.
+                  </p>
+                  <p>
+                    <em>(This project is no longer accessible.)</em>
                   </p>
                 </div>
               </div>
               <div id="jirafe" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/jirafe-logo.jpg" />
+                <div class="project_logo" style="background-image: url('assets/jirafe-logo.jpg')">
                 </div>
                 <div class="project_info">
                   <h3>
@@ -331,53 +371,8 @@
                   <p>
                     Developed Jirafe's company page, blog, and "Get Started" questionnaire.
                   </p>
-                </div>
-              </div>
-              <div id="rallyflix" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/rallyflix-logo.jpg" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://www.rallyflix.herokuapp.com" target="_blank">
-                      rallyflix.com
-                    </a>
-                  </h3>
                   <p>
-                    Built the back-end and API for RallyFlix, a Product Hunt-style movie screening platform, using Ruby on Rails and Grape.
-                  </p>
-                </div>
-              </div>
-              <div id="rightpet" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/rightpet-logo.jpg" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://www.rightpet.com" target="_blank">
-                      rightpet.com
-                    </a>
-                  </h3>
-                  <p>
-                    Updated and developed user questionnaires, search pages and results, user sign up and login, user profiles, etc. Built on ASP.net.
-                  </p>
-                </div>
-              </div>
-              <div id="twttr" class="project_container">
-                <div class="project_logo">
-                  <img src="assets/twttr-logo.jpg" />
-                </div>
-                <div class="project_info">
-                  <h3>
-                    <a href="http://www.twttrfrgmnts.com" target="_blank">
-                      twttrfrgmnts.com
-                    </a>
-                  </h3>
-                  <p>
-                    Twitter Fragments is an application that visualizes the fragmentation of conversations on Twitter using D3.js and JSON.
-                  </p>
-                  <p>
-                    See twttrfrgmnts on <a href="https://github.com/JayK31/tweet-conversation-viewer/" target="_blank">Github</a>.
+                    <em>(This project is no longer accessible.)</em>
                   </p>
                 </div>
               </div>
@@ -391,7 +386,7 @@
           </td>
           <td>
             <a href="/technologies" class="technologies">
-              Technologies/
+              Skills & Tech/
             </a>
           </td>
           <td class="modified">
@@ -409,66 +404,58 @@
           <td class="table-spacer">
           </td>
           <td colspan="4">
-            <div class="technologies">
+            <div class="technologies td-inner-container">
               <div class="list-one">
                 <ul>
                   <li>
                     Ruby on Rails
                   </li>
                   <li>
-                    API design
+                    JavaScript (React, Node)
                   </li>
                   <li>
-                    Heroku
+                    SQL/PostgreSQL
+                  </li>
+                  <li>
+                    Testing (Rspec, Capybara, Jasmine)
+                  </li>
+                  <li>
+                    Continuous Integration
                   </li>
                 </ul>
               </div>
               <div class="list-two">
                 <ul>
                   <li>
-                    JavaScript
+                    API design
                   </li>
                   <li>
-                    React/Redux
+                    Monolith and micro-service architectures
                   </li>
                   <li>
-                    Node
+                    Test-driven development
                   </li>
                   <li>
-                    Ember
+                    Domain-driven development
+                  </li>
+                  <li>
+                    Event storming
                   </li>
                 </ul>
               </div>
               <div class="list-three">
                 <ul>
                   <li>
-                    Acceptance, integration, and unit testing.
-                  </li>
-                </ul>
-              </div>
-              <div class="list-four">
-                <ul>
-                  <li>
-                    HTML/CSS
+                    Agile project management
                   </li>
                   <li>
-                    Responsive and mobile design
-                  </li>
-                </ul>
-              </div>
-              <div class="list-five">
-                <ul>
-                  <li>
-                    WordPress
+                    Jira/Basecamp/Clubhouse
                   </li>
                   <li>
-                    PHP
+                    Managing distributed teams
                   </li>
                   <li>
-                    Python
-                  </li>
-                  <li>
-                    AWS
+                    Liaising between business stakeholders and tech teams
                   </li>
                 </ul>
               </div>
@@ -486,7 +473,11 @@
   </div>
   <footer>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="js/ie8_fixes.js"></script>
+    <script src="js/title.js"></script>
+    <script src="js/rows.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/preload_images.js"></script>
   </footer>
 </body>
 </html>
