@@ -29,6 +29,9 @@ body {
       list-style-type: disc;
       margin: 16px 0px;
       padding-left: 40px;
+      li {
+        margin: 0 0 8px;
+      }
     }
 
     table {
