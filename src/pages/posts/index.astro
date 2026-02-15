@@ -36,7 +36,7 @@ const formatDate = (dateStr: string) => {
 };
 ---
 
-<BaseLayout title="blog">
+<BaseLayout title="posts">
   <Grid columnNames={columnNames} columnSizes={columnSizes}>
     {posts.length === 0 ? (
       <div class="p-4 italic text-gray-500">
@@ -47,7 +47,7 @@ const formatDate = (dateStr: string) => {
         <div class={`grid grid-cols-1 ${columnSizes} gap-4 hover:bg-gray-100`}>
           <div class="p-4">
             <a
-              href={`/blog/${post.slug}`}
+              href={`/posts/${post.slug}`}
               class="text-blue-600 hover:underline flex items-center font-bold"
             >
               <FileText class="w-5 h-5 mr-2 flex-shrink-0" />
