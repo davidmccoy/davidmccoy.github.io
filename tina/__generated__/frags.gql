@@ -1,0 +1,95 @@
+fragment SettingsParts on Settings {
+  __typename
+  title
+  description
+  footerText
+}
+
+fragment AboutParts on About {
+  __typename
+  bio
+  headshot
+  skillCategories {
+    __typename
+    title
+    items
+  }
+  interests
+}
+
+fragment ExperienceParts on Experience {
+  __typename
+  company
+  location
+  sortOrder
+  roles {
+    __typename
+    title
+    startYear
+    endYear
+    hasDescription
+  }
+}
+
+fragment EducationParts on Education {
+  __typename
+  credentials {
+    __typename
+    name
+    institution
+    startYear
+    endYear
+    location
+  }
+}
+
+fragment ProjectParts on Project {
+  __typename
+  name
+  stack
+  infrastructure
+  description
+  category
+  sortOrder
+  logo
+  logoWidth
+  heroImage
+  websiteUrl
+  githubUrl
+  codeIsPublic
+  isAccessible
+}
+
+fragment TestimonialParts on Testimonial {
+  __typename
+  from
+  type
+  relationship
+  date
+  themes
+  sortOrder
+}
+
+fragment SocialLinksParts on SocialLinks {
+  __typename
+  links {
+    __typename
+    name
+    icon
+    url
+    content
+    joined
+    active
+  }
+}
+
+fragment PostParts on Post {
+  __typename
+  title
+  slug
+  excerpt
+  date
+  updatedDate
+  tags
+  draft
+}
