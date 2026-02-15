@@ -1,0 +1,36 @@
+{
+  "links": [
+    {
+      "name": "Github",
+      "icon": "github",
+      "url": "https://github.com/davidmccoy",
+      "content": "JavaScript, TypeScript, React, Node.js, Python, Ruby, Ruby on Rails, etc",
+      "joined": "27-Jan-2014",
+      "active": "Active"
+    },
+    {
+      "name": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/in/rdmccoy/",
+      "content": "Actively avoiding being posted on r/LinkedInLunatics",
+      "joined": "02-Mar-2008",
+      "active": "Monitoring"
+    },
+    {
+      "name": "Twitter",
+      "icon": "twitter",
+      "url": "https://twitter.com/dmccoy",
+      "content": "Sports, technology, and news",
+      "joined": "01-Mar-2008",
+      "active": "Active"
+    },
+    {
+      "name": "Bluesky",
+      "icon": "external-link",
+      "url": "https://bsky.app/profile/davidmccoy.com",
+      "content": "Keeping that old-Twitter vibe alive",
+      "joined": "13-May-2023",
+      "active": "Active"
+    }
+  ]
+}

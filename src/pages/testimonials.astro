@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Grid from '../components/Grid.astro';
+import FileText from '../components/icons/FileText.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
+
+// Load testimonial files
+const testimonialsDir = 'src/content/testimonials';
+const testimonialFiles = fs.readdirSync(testimonialsDir).filter((f: string) => f.endsWith('.md'));
+const testimonials = testimonialFiles
+  .map((file: string) => {
+    const content = fs.readFileSync(path.join(testimonialsDir, file), 'utf-8');
+    const { data, content: body } = matter(content);
+    return {
+      ...data,
+      body: marked(body),
+    };
+  })
+  .sort((a: any, b: any) => (a.sortOrder || 0) - (b.sortOrder || 0));
+
+const columnNames = ['From', 'Relationship', 'Type', 'Themes'];
+const columnSizes = 'sm:grid-cols-[1fr_1fr_1fr_1fr]';
+---
+
+<BaseLayout title="testimonials">
+  <Grid columnNames={columnNames} columnSizes={columnSizes}>
+    <div class="grid grid-cols-1 gap-4">
+      <div class="p-4 italic">
+        Excerpts posted with permission. Slightly edited to preserve anonymity
+        and business details. Boldface added by me.
+      </div>
+    </div>
+    {testimonials.map((testimonial: any, index: number) => (
+      <details id={`testimonial-${index}`}>
+        <summary class={`grid grid-cols-1 ${columnSizes} gap-4 hover:bg-gray-100 cursor-pointer`}>
+          <div class="p-4 break-words">
+            <span class="flex items-start gap-2 text-blue-600 hover:underline text-left w-full font-bold">
+              <FileText class="w-5 h-5 flex-shrink-0" />
+              {testimonial.from}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 flex-shrink-0 mt-0.5 chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2 flex-shrink-0 chevron-down hidden"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+            <div class="sm:hidden text-xs text-gray-500 truncate max-w-[90vw] mt-1">
+              {testimonial.themes}
+            </div>
+          </div>
+          <div class="p-4 hidden sm:block">{testimonial.relationship}</div>
+          <div class="p-4 hidden sm:block">{testimonial.type}</div>
+          <div class="p-4 max-w-xs truncate hidden sm:block">{testimonial.themes}</div>
+        </summary>
+        <div class="bg-gray-50">
+          <div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] gap-4">
+            <div></div>
+            <div class="py-2 px-3 testimonial-text" set:html={testimonial.body} />
+            <div></div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] gap-4">
+            <div></div>
+            <div>
+              <button
+                class="flex items-center text-blue-600 hover:underline p-4 collapse-btn"
+                data-target={`testimonial-${index}`}
+              >
+                Collapse
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2 flex-shrink-0"><path d="m18 15-6-6-6 6"/></svg>
+              </button>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </details>
+    ))}
+  </Grid>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.collapse-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = (btn as HTMLElement).dataset.target;
+      if (target) {
+        const details = document.getElementById(target) as HTMLDetailsElement;
+        if (details) details.open = false;
+      }
+    });
+  });
+</script>

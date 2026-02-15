@@ -1,0 +1,26 @@
+---
+import GridHeader from './GridHeader.astro';
+
+interface Props {
+  columnNames?: string[];
+  columnSizes?: string;
+  primaryColumnIndex?: number;
+}
+
+const {
+  columnNames,
+  columnSizes,
+  primaryColumnIndex,
+} = Astro.props;
+---
+
+<div class="w-full">
+  <GridHeader
+    columnNames={columnNames}
+    columnSizes={columnSizes}
+    primaryColumnIndex={primaryColumnIndex}
+  />
+  <div class="divide-y">
+    <slot />
+  </div>
+</div>

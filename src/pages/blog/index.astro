@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Grid from '../../components/Grid.astro';
+import FileText from '../../components/icons/FileText.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+import matter from 'gray-matter';
+
+// Load blog posts
+const blogDir = 'src/content/blog';
+let posts: any[] = [];
+
+if (fs.existsSync(blogDir)) {
+  const blogFiles = fs.readdirSync(blogDir).filter((f: string) => f.endsWith('.md'));
+  posts = blogFiles
+    .map((file: string) => {
+      const content = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+      const { data } = matter(content);
+      return {
+        ...data,
+        file: file.replace('.md', ''),
+      };
+    })
+    .filter((p: any) => !p.draft)
+    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+const columnNames = ['Title', 'Date', 'Tags'];
+const columnSizes = 'sm:grid-cols-[3fr_1fr_2fr]';
+
+const formatDate = (dateStr: string) => {
+  const d = new Date(dateStr);
+  const day = d.getDate().toString().padStart(2, '0');
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${day}-${months[d.getMonth()]}-${d.getFullYear()}`;
+};
+---
+
+<BaseLayout title="blog">
+  <Grid columnNames={columnNames} columnSizes={columnSizes}>
+    {posts.length === 0 ? (
+      <div class="p-4 italic text-gray-500">
+        No posts yet. Check back soon!
+      </div>
+    ) : (
+      posts.map((post: any) => (
+        <div class={`grid grid-cols-1 ${columnSizes} gap-4 hover:bg-gray-100`}>
+          <div class="p-4">
+            <a
+              href={`/blog/${post.slug}`}
+              class="text-blue-600 hover:underline flex items-center font-bold"
+            >
+              <FileText class="w-5 h-5 mr-2 flex-shrink-0" />
+              {post.title}
+            </a>
+            <div class="sm:hidden text-xs text-gray-500 mt-1">
+              {formatDate(post.date)}
+            </div>
+          </div>
+          <div class="p-4 hidden sm:block">{formatDate(post.date)}</div>
+          <div class="p-4 hidden sm:block truncate">
+            {post.tags?.join(', ')}
+          </div>
+        </div>
+      ))
+    )}
+  </Grid>
+</BaseLayout>

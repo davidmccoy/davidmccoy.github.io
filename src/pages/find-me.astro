@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Grid from '../components/Grid.astro';
+import Github from '../components/icons/Github.astro';
+import Linkedin from '../components/icons/Linkedin.astro';
+import Twitter from '../components/icons/Twitter.astro';
+import ExternalLink from '../components/icons/ExternalLink.astro';
+import fs from 'node:fs';
+
+const socialLinksData = JSON.parse(
+  fs.readFileSync('src/content/social-links/social-links.json', 'utf-8')
+);
+
+const iconMap: Record<string, any> = {
+  github: Github,
+  linkedin: Linkedin,
+  twitter: Twitter,
+  'external-link': ExternalLink,
+};
+
+const columnNames = ['Site', 'Joined', 'Status', 'Description'];
+const columnSizes = 'sm:grid-cols-[1fr_1fr_1fr_2fr]';
+---
+
+<BaseLayout title="find-me">
+  <Grid columnNames={columnNames} columnSizes={columnSizes}>
+    {socialLinksData.links.map((item: any) => {
+      const IconComponent = iconMap[item.icon];
+      return (
+        <div class={`grid grid-cols-1 ${columnSizes} gap-4 hover:bg-gray-100`}>
+          <div class="p-4">
+            <a
+              href={item.url}
+              target="_blank"
+              class="text-blue-600 hover:underline flex items-center font-bold"
+            >
+              {IconComponent && <IconComponent class="w-5 h-5 mr-2" />}
+              {item.name}
+            </a>
+            <div class="sm:hidden text-xs text-gray-500 mt-1">
+              Joined {item.joined} | {item.active}
+            </div>
+          </div>
+          <div class="hidden sm:block p-4">{item.joined}</div>
+          <div class="hidden sm:block p-4">{item.active}</div>
+          <div class="hidden sm:block p-4 truncate">{item.content}</div>
+        </div>
+      );
+    })}
+  </Grid>
+</BaseLayout>

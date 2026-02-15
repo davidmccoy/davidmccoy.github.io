@@ -1,0 +1,23 @@
+---
+interface Props {
+  columnNames?: string[];
+  columnSizes?: string;
+  primaryColumnIndex?: number;
+}
+
+const {
+  columnNames = ['Name', 'Last Modified', 'Size', 'Description'],
+  columnSizes = 'sm:grid-cols-[1fr_1fr_1fr_1fr]',
+  primaryColumnIndex = 0,
+} = Astro.props;
+---
+
+<div class={`grid grid-cols-1 ${columnSizes} gap-4 bg-gray-100 font-bold`}>
+  {columnNames.map((columnName, index) => (
+    <div
+      class={`p-4 ${index !== primaryColumnIndex ? 'hidden sm:block' : ''}`}
+    >
+      {columnName}
+    </div>
+  ))}
+</div>

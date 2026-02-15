@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Grid from '../components/Grid.astro';
+import Folder from '../components/icons/Folder.astro';
+
+const sections = [
+  {
+    name: 'About',
+    link: '/about',
+    lastModified: '27-Jun-2024',
+    size: '-',
+    description: 'Bio, skills, interests, etc.',
+  },
+  {
+    name: 'CV',
+    link: '/cv',
+    lastModified: '25-Aug-2024',
+    size: '-',
+    description: 'Work and education history',
+  },
+  {
+    name: 'Portfolio',
+    link: '/portfolio',
+    lastModified: '25-Oct-2024',
+    size: '-',
+    description: 'Professional and personal projects',
+  },
+  {
+    name: 'Testimonials',
+    link: '/testimonials',
+    lastModified: '25-Oct-2024',
+    size: '-',
+    description: 'A selection of feedback received',
+  },
+  {
+    name: 'Socials and Writing',
+    link: '/find-me',
+    lastModified: '10-Oct-2024',
+    size: '-',
+    description: 'Blog, Github, LinkedIn, Twitter, Bluesky',
+  },
+  {
+    name: 'Blog',
+    link: '/blog',
+    lastModified: '14-Feb-2026',
+    size: '-',
+    description: 'Thoughts and writing',
+  },
+];
+
+const columnNames = ['Name', 'Last Modified', 'Size', 'Description'];
+const columnSizes = 'sm:grid-cols-[2fr_1fr_1fr_2fr]';
+---
+
+<BaseLayout showParentDirectoryLink={false}>
+  <Grid columnNames={columnNames} columnSizes={columnSizes}>
+    {sections.map((file) => (
+      <div class={`grid grid-cols-1 ${columnSizes} hover:bg-gray-100 border-t gap-4`}>
+        <div class="p-4">
+          <a href={file.link} class="text-blue-600 hover:underline flex items-center">
+            <Folder class="w-4 h-4 mr-2 flex-shrink-0" />
+            <span class="font-bold">{file.name}</span>
+          </a>
+          <div class="sm:hidden text-xs text-gray-500 mt-1">{file.description}</div>
+        </div>
+        <div class="p-4 hidden sm:block">{file.lastModified}</div>
+        <div class="p-4 hidden sm:block">{file.size}</div>
+        <div class="p-4 hidden sm:block truncate">{file.description}</div>
+      </div>
+    ))}
+  </Grid>
+</BaseLayout>

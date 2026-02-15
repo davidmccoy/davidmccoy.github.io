@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Grid from '../components/Grid.astro';
+import Briefcase from '../components/icons/Briefcase.astro';
+import GraduationCap from '../components/icons/GraduationCap.astro';
+import FileText from '../components/icons/FileText.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
+
+// Load education data
+const educationData = JSON.parse(
+  fs.readFileSync('src/content/education/education.json', 'utf-8')
+);
+
+// Load CV experience files
+const cvDir = 'src/content/cv';
+const cvFiles = fs.readdirSync(cvDir).filter((f: string) => f.endsWith('.md'));
+const experiences = cvFiles
+  .map((file: string) => {
+    const content = fs.readFileSync(path.join(cvDir, file), 'utf-8');
+    const { data, content: body } = matter(content);
+    return {
+      ...data,
+      body: marked(body),
+    };
+  })
+  .sort((a: any, b: any) => (a.sortOrder || 0) - (b.sortOrder || 0));
+
+const renderDateRange = (startYear: number, endYear?: number): string => {
+  if (startYear === endYear) return startYear.toString();
+  if (!endYear) return `${startYear} - Present`;
+  return `${startYear} - ${endYear}`;
+};
+
+const columnNames = ['Start - End', 'Title', 'Company', 'Location'];
+const columnSizes = 'sm:grid-cols-[1fr_3fr_1fr_1fr]';
+---
+
+<BaseLayout title="cv">
+  <Grid columnNames={columnNames} columnSizes={columnSizes} primaryColumnIndex={1}>
+    <!-- Experience Header -->
+    <div class={`grid grid-cols-1 ${columnSizes} gap-4 border-t`}>
+      <div class="p-4 font-bold">
+        <Briefcase class="w-4 h-4 inline mr-2" />
+        <span>
+          Experience
+          <a
+            href="/files/david-mccoy-resume.pdf"
+            target="_blank"
+            class="text-blue-600 hover:underline items-center font-normal inline sm:hidden"
+          >
+            (PDF)
+          </a>
+        </span>
+      </div>
+      <div class="hidden sm:block"></div>
+      <div class="hidden sm:block"></div>
+      <div class="hidden sm:block px-2 py-4 font-bold">
+        <span class="flex items-start gap-2">
+          <FileText class="w-5 h-5 flex-shrink-0 text-blue-600" />
+          <a
+            href="/files/david-mccoy-resume.pdf"
+            target="_blank"
+            class="text-blue-600 hover:underline flex items-center font-bold"
+          >
+            Download PDF
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Experience Items -->
+    {experiences.map((exp: any) => (
+      <>
+        {exp.roles.map((role: any, roleIndex: number) => (
+          <>
+            {role.hasDescription ? (
+              <details id={`role-${exp.company}-${roleIndex}`}>
+                <summary class={`grid grid-cols-1 ${columnSizes} gap-4 hover:bg-gray-100 ${roleIndex !== 0 ? 'border-none' : ''}`}>
+                  <div class="p-4 hidden sm:block">
+                    {renderDateRange(role.startYear, role.endYear)}
+                  </div>
+                  <div class="p-4">
+                    <span class="flex items-start gap-2 text-blue-600 hover:underline text-left w-full font-bold cursor-pointer">
+                      {role.title}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 flex-shrink-0 mt-0.5 chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2 flex-shrink-0 chevron-down hidden"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                    <div class="sm:hidden text-xs text-gray-500 mt-1">
+                      {renderDateRange(role.startYear, role.endYear)} | {exp.company}
+                    </div>
+                  </div>
+                  <div class="p-4 hidden sm:block">{roleIndex === 0 ? exp.company : ''}</div>
+                  <div class="p-4 hidden sm:block">{roleIndex === 0 ? exp.location : ''}</div>
+                </summary>
+                <div class="bg-gray-50 border-t">
+                  <div class={`grid grid-cols-1 ${columnSizes} gap-4`}>
+                    <div class="hidden sm:block"></div>
+                    <div class="py-2 px-4 text-sm" set:html={exp.body} />
+                  </div>
+                  <div class={`grid grid-cols-1 ${columnSizes} gap-4`}>
+                    <div></div>
+                    <div>
+                      <button
+                        class="flex items-center text-blue-600 hover:underline p-4 collapse-btn"
+                        data-target={`role-${exp.company}-${roleIndex}`}
+                      >
+                        Collapse
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2 flex-shrink-0"><path d="m18 15-6-6-6 6"/></svg>
+                      </button>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+              </details>
+            ) : (
+              <div class={`grid grid-cols-1 ${columnSizes} gap-4 ${roleIndex !== 0 ? 'border-none' : ''}`}>
+                <div class="p-4 hidden sm:block">
+                  {renderDateRange(role.startYear, role.endYear)}
+                </div>
+                <div class="p-4">
+                  <span class="flex-grow text-blue-600 font-bold">{role.title}</span>
+                  <div class="sm:hidden text-xs text-gray-500 mt-1">
+                    {renderDateRange(role.startYear, role.endYear)} | {exp.company}
+                  </div>
+                </div>
+                <div class="p-4 hidden sm:block">{roleIndex === 0 ? exp.company : ''}</div>
+                <div class="p-4 hidden sm:block">{roleIndex === 0 ? exp.location : ''}</div>
+              </div>
+            )}
+          </>
+        ))}
+      </>
+    ))}
+
+    <!-- Education Header -->
+    <div class={`grid grid-cols-1 ${columnSizes} border-t`}>
+      <div class="col-span-1 sm:col-span-4 p-4 font-bold">
+        <GraduationCap class="w-4 h-4 inline mr-2" />
+        Education
+      </div>
+    </div>
+
+    <!-- Education Items -->
+    {educationData.credentials.map((edu: any) => (
+      <div class={`grid grid-cols-1 ${columnSizes} border-t`}>
+        <div class="p-4 hidden sm:block">
+          {renderDateRange(edu.startYear, edu.endYear)}
+        </div>
+        <div class="p-4">
+          <span class="text-blue-600 font-bold">{edu.name}</span>
+          <div class="sm:hidden text-xs text-gray-500 mt-1">
+            {renderDateRange(edu.startYear, edu.endYear)} | {edu.institution}
+          </div>
+        </div>
+        <div class="p-4 hidden sm:block">{edu.institution}</div>
+        <div class="p-4 hidden sm:block">{edu.location}</div>
+      </div>
+    ))}
+  </Grid>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.collapse-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = (btn as HTMLElement).dataset.target;
+      if (target) {
+        const details = document.getElementById(target) as HTMLDetailsElement;
+        if (details) details.open = false;
+      }
+    });
+  });
+</script>

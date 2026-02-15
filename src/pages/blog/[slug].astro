@@ -1,0 +1,37 @@
+---
+import BlogPost from '../../layouts/BlogPost.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
+
+export function getStaticPaths() {
+  const blogDir = 'src/content/blog';
+  if (!fs.existsSync(blogDir)) return [];
+
+  const blogFiles = fs.readdirSync(blogDir).filter((f: string) => f.endsWith('.md'));
+  return blogFiles
+    .map((file: string) => {
+      const content = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+      const { data, content: body } = matter(content);
+      if (data.draft) return null;
+      return {
+        params: { slug: data.slug },
+        props: {
+          title: data.title,
+          date: data.date,
+          updatedDate: data.updatedDate,
+          tags: data.tags,
+          body: marked(body),
+        },
+      };
+    })
+    .filter(Boolean);
+}
+
+const { title, date, updatedDate, tags, body } = Astro.props;
+---
+
+<BlogPost title={title} date={date} updatedDate={updatedDate} tags={tags}>
+  <div set:html={body} />
+</BlogPost>

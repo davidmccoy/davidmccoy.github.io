@@ -1,0 +1,55 @@
+{
+  "bio": "I'm a software engineer with over 11 years of experience in software development and technical leadership. I have extensive experience with product and software development lifecycles: from ideation, architecture, and design to development, testing, deployment, performance, and security.",
+  "headshot": "/images/headshot.jpg",
+  "skillCategories": [
+    {
+      "title": "Technologies",
+      "items": [
+        "TypeScript/JavaScript (React, Node.js, Next.js)",
+        "Python (PyTorch, LangChain, FastAPI)",
+        "Ruby/Ruby on Rails",
+        "AI/ML (RAG pipelines, knowledge graphs, classifiers, nearest-neighbor, etc)",
+        "SQL/PostgreSQL"
+      ]
+    },
+    {
+      "title": "Architecture and System Design",
+      "items": [
+        "API design (REST and GraphQL)",
+        "Monolith and micro-service architectures",
+        "Distributed systems built with Docker and Kubernetes",
+        "Domain-driven design",
+        "CI/CD"
+      ]
+    },
+    {
+      "title": "Leadership",
+      "items": [
+        "Building high performance cultures by emphasizing ownership and accountability",
+        "Leading and managing distributed engineering teams",
+        "Technical and cross-functional leadership",
+        "Agile project management"
+      ]
+    },
+    {
+      "title": "Personal",
+      "items": [
+        "High sense of ownership and and very self-motivated",
+        "Growth mindset: never stop learning",
+        "Commitment to building business, domain, and product expertise",
+        "Excellent writing (both technical and non-technical)",
+        "Planning (everything, not just projects!)",
+        "Strong interpersonal communication and relationship-building, even in remote teams"
+      ]
+    }
+  ],
+  "interests": [
+    "an insatiable reader (news, engineering books/blogs, fiction)",
+    "an occasional writer",
+    "an avid consumer of physical media (books, magazines, vinyl records, CDs)",
+    "a long-suffering Seattle sports fan (#GoHawks, #GoMs, #EBFG)",
+    "a social gamer (just the occasional Magic: The Gathering draft with friends these days)",
+    "a mediocre photographer",
+    "a fair-weather cyclist"
+  ]
+}

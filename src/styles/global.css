@@ -1,0 +1,77 @@
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+td {
+  vertical-align: top;
+}
+
+ul, ol {
+  line-height: 1.5rem;
+}
+
+ol {
+  list-style-type: decimal;
+  padding: 0 1.5rem;
+}
+
+ul {
+  padding: 0 1rem 0 1.1rem;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+ul > li {
+  margin: 0 0 0.5rem;
+  text-indent: -1.1rem;
+}
+
+ul > ul, ol > ul {
+  margin: 0.5rem 0 0;
+  list-style: circle;
+}
+
+p {
+  line-height: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.testimonial-text > h2 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Details/summary expand-collapse styling */
+details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::marker {
+  display: none;
+  content: '';
+}
+
+details[open] .chevron-right {
+  display: none;
+}
+
+details:not([open]) .chevron-down {
+  display: none;
+}
+
+details:not([open]) .chevron-right {
+  display: inline-block;
+}
+
+details[open] .chevron-down {
+  display: inline-block;
+}

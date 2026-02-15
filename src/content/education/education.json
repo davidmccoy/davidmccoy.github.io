@@ -1,0 +1,18 @@
+{
+  "credentials": [
+    {
+      "name": "Bachelor of Arts in Political Science",
+      "institution": "University of Washington",
+      "startYear": 2006,
+      "endYear": 2011,
+      "location": "Seattle, WA"
+    },
+    {
+      "name": "Certficate in Informaton Security and Risk Management",
+      "institution": "University of Washington",
+      "startYear": 2014,
+      "endYear": 2014,
+      "location": "Seattle, WA"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Grid from '../components/Grid.astro';
+import FileText from '../components/icons/FileText.astro';
+import fs from 'node:fs';
+
+const aboutData = JSON.parse(
+  fs.readFileSync('src/content/about/about.json', 'utf-8')
+);
+
+const columnNames = ['Name', 'Last Modified', 'Size', 'Description'];
+const columnSizes = 'sm:grid-cols-[2fr_2fr_1fr_3fr]';
+
+const infoItems = [
+  {
+    id: '1',
+    name: 'Bio.txt',
+    description: "I'm a software engineer with over 10 years of experience in software development and technical leadership.",
+    lastModified: '01-Jul-2024',
+    size: '2.1K',
+    expandable: true,
+    showCollapse: true,
+  },
+  {
+    id: '2',
+    name: 'CV.pdf',
+    description: '',
+    lastModified: '10-10-2024',
+    size: '100K',
+    file: '/files/david-mccoy-resume.pdf',
+    expandable: false,
+  },
+  {
+    id: '3',
+    name: 'Skills and Technology.xls',
+    description: 'JavaScript, TypeScript, React, Node.js, Python, Ruby',
+    lastModified: 'Just now',
+    size: '4.5K',
+    expandable: true,
+    showCollapse: true,
+  },
+  {
+    id: '4',
+    name: 'Interests.doc',
+    description: '',
+    lastModified: '05-Jun-2024',
+    size: '1.8K',
+    expandable: true,
+    showCollapse: true,
+  },
+  {
+    id: '5',
+    name: 'Contact.rtf',
+    description: '',
+    lastModified: '20-Jul-2024',
+    size: '0.5K',
+    expandable: true,
+  },
+];
+---
+
+<BaseLayout title="about">
+  <Grid columnNames={columnNames} columnSizes={columnSizes}>
+    {infoItems.map((item) => (
+      <>
+        {item.file ? (
+          <div class={`grid grid-cols-1 ${columnSizes} gap-4 hover:bg-gray-100`}>
+            <div class="p-4 break-words">
+              <span class="flex items-start gap-2">
+                <FileText class="w-5 h-5 flex-shrink-0 text-blue-600" />
+                <a
+                  href={item.file}
+                  target="_blank"
+                  class="text-blue-600 hover:underline flex items-center font-bold"
+                >
+                  {item.name}
+                </a>
+              </span>
+              <div class="sm:hidden text-xs text-gray-500 truncate max-w-[90vw] mt-2">
+                {item.description}
+              </div>
+            </div>
+            <div class="p-4 hidden sm:block">{item.lastModified}</div>
+            <div class="p-4 hidden sm:block">{item.size}</div>
+            <div class="p-4 max-w-xs truncate hidden sm:block">{item.description}</div>
+          </div>
+        ) : (
+          <details id={`about-${item.id}`}>
+            <summary class={`grid grid-cols-1 ${columnSizes} gap-4 hover:bg-gray-100`}>
+              <div class="p-4 break-words">
+                <span class="flex items-start gap-2 text-blue-600 hover:underline text-left w-full font-bold cursor-pointer">
+                  <FileText class="w-5 h-5 flex-shrink-0" />
+                  {item.name}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 flex-shrink-0 mt-0.5 chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2 flex-shrink-0 chevron-down hidden"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+                <div class="sm:hidden text-xs text-gray-500 truncate max-w-[90vw] mt-2">
+                  {item.description}
+                </div>
+              </div>
+              <div class="p-4 hidden sm:block">{item.lastModified}</div>
+              <div class="p-4 hidden sm:block">{item.size}</div>
+              <div class="p-4 max-w-xs truncate hidden sm:block" set:html={item.description}></div>
+            </summary>
+
+            {item.id === '1' && (
+              <div class="grid grid-cols-[minmax(0,128px)_minmax(0,700px)] sm:grid-cols-[minmax(0,300px)_minmax(0,700px)_1fr] bg-gray-50">
+                <div class="py-4 px-4 sm:max-w-80">
+                  <div class="relative w-24 sm:w-full aspect-square">
+                    <img
+                      src={aboutData.headshot}
+                      alt="headshot"
+                      class="object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
+                <div class="py-4 px-4">
+                  <p>{aboutData.bio}</p>
+                </div>
+              </div>
+            )}
+
+            {item.id === '3' && (
+              <div class="grid grid-cols-1 sm:grid-cols-4 bg-gray-50">
+                {aboutData.skillCategories.map((category: any) => (
+                  <div class="py-2 px-4">
+                    <p class="mb-2"><strong>{category.title}:</strong></p>
+                    <ul class="list-disc break-words">
+                      {category.items.map((skill: string) => (
+                        <li>{skill}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {item.id === '4' && (
+              <div class="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-2 bg-gray-50">
+                <div></div>
+                <div class="p-4">
+                  <p class="mb-2"><strong>When not traversing the stack, I am:</strong></p>
+                  <ul class="list-disc">
+                    {aboutData.interests.map((interest: string) => (
+                      <li set:html={interest} />
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            {item.id === '5' && (
+              <div class="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-2 bg-gray-50">
+                <div></div>
+                <div class="p-4">
+                  Find me <a href="/find-me" class="text-blue-600 hover:underline">here</a>.
+                </div>
+              </div>
+            )}
+
+            {item.showCollapse && (
+              <div class="sm:hidden bg-gray-50">
+                <button
+                  class="flex items-center text-blue-600 hover:underline p-4 collapse-btn"
+                  data-target={`about-${item.id}`}
+                >
+                  Collapse
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2 flex-shrink-0"><path d="m18 15-6-6-6 6"/></svg>
+                </button>
+              </div>
+            )}
+          </details>
+        )}
+      </>
+    ))}
+  </Grid>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.collapse-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = (btn as HTMLElement).dataset.target;
+      if (target) {
+        const details = document.getElementById(target) as HTMLDetailsElement;
+        if (details) details.open = false;
+      }
+    });
+  });
+</script>
