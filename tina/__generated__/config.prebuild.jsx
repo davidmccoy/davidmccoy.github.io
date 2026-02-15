@@ -1,5 +1,79 @@
-// tina/config.ts
-import { defineConfig } from "tinacms";
+// tina/config.tsx
+import React from "react";
+import { defineConfig, wrapFieldsWithMeta } from "tinacms";
+function injectAdminStyles() {
+  const id = "tina-custom-styles";
+  if (typeof document === "undefined" || document.getElementById(id)) return;
+  const style = document.createElement("style");
+  style.id = id;
+  style.textContent = `
+    [data-slate-editor="true"] { min-height: 60vh !important; }
+    [data-slate-editor="true"] > * { min-height: auto; }
+  `;
+  document.head.appendChild(style);
+}
+var NarrowField = wrapFieldsWithMeta(({ field, input, meta }) => {
+  React.useEffect(() => {
+    injectAdminStyles();
+  }, []);
+  const baseInputClass = "shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md";
+  if (field.type === "boolean") {
+    return React.createElement("div", { style: { maxWidth: "160px" } }, React.createElement("label", { className: "flex items-center gap-2 cursor-pointer" }, React.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: !!input.value,
+        onChange: (e) => input.onChange(e.target.checked),
+        className: "w-4 h-4 rounded border-gray-300 text-blue-600"
+      }
+    ), React.createElement("span", { className: "text-sm text-gray-700" }, input.value ? "Yes" : "No")));
+  }
+  if (field.type === "datetime") {
+    return React.createElement("div", { style: { maxWidth: "280px" } }, React.createElement(
+      "input",
+      {
+        type: "datetime-local",
+        value: input.value ? input.value.slice(0, 16) : "",
+        onChange: (e) => {
+          const val = e.target.value;
+          input.onChange(val ? new Date(val).toISOString() : "");
+        },
+        className: baseInputClass
+      }
+    ));
+  }
+  return React.createElement("input", { ...input, className: baseInputClass });
+});
+var DraftAndDates = (props) => {
+  React.useEffect(() => {
+    injectAdminStyles();
+  }, []);
+  const form = props.form;
+  const draft = form.getState().values.draft || false;
+  const published = form.getState().values.published || "";
+  const baseInputClass = "shadow-inner focus:shadow-outline focus:border-blue-500 focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 w-full bg-white border border-gray-200 transition-all ease-out duration-150 focus:text-gray-900 rounded-md";
+  const labelClass = "block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2";
+  return React.createElement("div", { className: "mb-5" }, React.createElement("div", { style: { display: "flex", gap: "16px", alignItems: "flex-end" } }, React.createElement("div", null, React.createElement("label", { className: labelClass }, "Draft"), React.createElement("div", { style: { height: "42px", display: "flex", alignItems: "center" } }, React.createElement("label", { className: "flex items-center gap-2 cursor-pointer" }, React.createElement(
+    "input",
+    {
+      type: "checkbox",
+      checked: !!draft,
+      onChange: (e) => form.change("draft", e.target.checked),
+      className: "w-4 h-4 rounded border-gray-300 text-blue-600"
+    }
+  ), React.createElement("span", { className: "text-sm text-gray-700" }, draft ? "Yes" : "No")))), React.createElement("div", { style: { flex: "1", maxWidth: "280px" } }, React.createElement("label", { className: labelClass }, "Publish Date *"), React.createElement(
+    "input",
+    {
+      type: "datetime-local",
+      value: published ? published.slice(0, 16) : "",
+      onChange: (e) => {
+        const val = e.target.value;
+        form.change("published", val ? new Date(val).toISOString() : "");
+      },
+      className: baseInputClass
+    }
+  ))));
+};
 var config_default = defineConfig({
   branch: process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main",
   clientId: process.env.TINA_CLIENT_ID || "",
@@ -183,14 +257,64 @@ var config_default = defineConfig({
         label: "Blog Posts",
         path: "src/content/blog",
         format: "md",
+        ui: {
+          filename: {
+            readonly: true,
+            slugify: (values) => {
+              return (values?.slug || "untitled").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+            }
+          },
+          defaultItem: () => ({
+            draft: true,
+            published: (/* @__PURE__ */ new Date()).toISOString()
+          }),
+          beforeSubmit: async ({ values }) => {
+            if (values.title && !values.slug) {
+              return {
+                ...values,
+                slug: values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+              };
+            }
+            return values;
+          }
+        },
         fields: [
           { type: "string", name: "title", label: "Title", required: true, isTitle: true },
-          { type: "string", name: "slug", label: "Slug", required: true },
+          { type: "rich-text", name: "body", label: "Body", isBody: true },
+          { type: "boolean", name: "draft", label: "Draft", ui: { component: () => null } },
           { type: "string", name: "excerpt", label: "Excerpt", ui: { component: "textarea" } },
-          { type: "datetime", name: "date", label: "Publish Date", required: true },
-          { type: "datetime", name: "updatedDate", label: "Updated Date" },
-          { type: "string", name: "tags", label: "Tags", list: true },
-          { type: "boolean", name: "draft", label: "Draft" }
+          { type: "datetime", name: "published", label: "Publish Date", required: true, ui: { component: DraftAndDates } },
+          { type: "string", name: "tags", label: "Tags", list: true, ui: { component: "tags" } },
+          {
+            type: "string",
+            name: "slug",
+            label: "Slug",
+            required: true,
+            ui: {
+              component: (props) => {
+                const [locked, setLocked] = React.useState(true);
+                return React.createElement("div", { className: "mb-5" }, React.createElement("label", { className: "block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2" }, "Slug"), React.createElement("div", { className: "relative" }, React.createElement(
+                  "input",
+                  {
+                    type: "text",
+                    value: props.input.value || "",
+                    onChange: props.input.onChange,
+                    disabled: locked,
+                    className: `border rounded-md px-3 py-2 w-full text-sm pr-10 ${locked ? "bg-gray-50 text-gray-500 border-gray-200 cursor-not-allowed" : "bg-white text-gray-900 border-blue-300"}`
+                  }
+                ), React.createElement(
+                  "button",
+                  {
+                    type: "button",
+                    onClick: () => setLocked(!locked),
+                    className: "absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600",
+                    title: locked ? "Unlock to edit" : "Lock field"
+                  },
+                  locked ? React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2" }), React.createElement("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" })) : React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2" }), React.createElement("path", { d: "M7 11V7a5 5 0 0 1 9.9-1" }))
+                )), React.createElement("span", { className: "block text-xs text-gray-400 mt-1 italic" }, locked ? "Auto-generated from title. Click lock to override." : "Editing enabled. Click lock to re-lock."));
+              }
+            }
+          }
         ]
       }
     ]

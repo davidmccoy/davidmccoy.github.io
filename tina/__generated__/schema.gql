@@ -401,15 +401,21 @@ type SocialLinksConnection implements Connection {
 
 type Post implements Node & Document {
   title: String!
-  slug: String!
-  excerpt: String
-  date: String!
-  updatedDate: String
-  tags: [String]
+  body: JSON
   draft: Boolean
+  excerpt: String
+  published: String!
+  tags: [String]
+  slug: String!
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
 }
 
 input DatetimeFilter {
@@ -422,12 +428,12 @@ input DatetimeFilter {
 
 input PostFilter {
   title: StringFilter
-  slug: StringFilter
-  excerpt: StringFilter
-  date: DatetimeFilter
-  updatedDate: DatetimeFilter
-  tags: StringFilter
+  body: RichTextFilter
   draft: BooleanFilter
+  excerpt: StringFilter
+  published: DatetimeFilter
+  tags: StringFilter
+  slug: StringFilter
 }
 
 type PostConnectionEdges {
@@ -572,12 +578,12 @@ input SocialLinksMutation {
 
 input PostMutation {
   title: String
-  slug: String
-  excerpt: String
-  date: String
-  updatedDate: String
-  tags: [String]
+  body: JSON
   draft: Boolean
+  excerpt: String
+  published: String
+  tags: [String]
+  slug: String
 }
 
 schema {

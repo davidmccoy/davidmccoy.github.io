@@ -3,12 +3,11 @@ import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   title: string;
-  date: string;
-  updatedDate?: string;
+  published: string;
   tags?: string[];
 }
 
-const { title, date, updatedDate, tags } = Astro.props;
+const { title, published, tags } = Astro.props;
 
 const formatDate = (dateStr: string) => {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -24,8 +23,7 @@ const formatDate = (dateStr: string) => {
     <div class="mb-6 border-b pb-4">
       <h2 class="text-xl font-bold mb-2">{title}</h2>
       <div class="text-xs text-gray-500">
-        <span>Published: {formatDate(date)}</span>
-        {updatedDate && <span class="ml-4">Updated: {formatDate(updatedDate)}</span>}
+        <span>Published: {formatDate(published)}</span>
       </div>
       {tags && tags.length > 0 && (
         <div class="mt-2 flex gap-2 flex-wrap">

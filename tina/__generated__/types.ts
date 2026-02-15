@@ -610,15 +610,21 @@ export type SocialLinksConnection = Connection & {
 export type Post = Node & Document & {
   __typename?: 'Post';
   title: Scalars['String']['output'];
-  slug: Scalars['String']['output'];
-  excerpt?: Maybe<Scalars['String']['output']>;
-  date: Scalars['String']['output'];
-  updatedDate?: Maybe<Scalars['String']['output']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
   draft?: Maybe<Scalars['Boolean']['output']>;
+  excerpt?: Maybe<Scalars['String']['output']>;
+  published: Scalars['String']['output'];
+  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  slug: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type DatetimeFilter = {
@@ -631,12 +637,12 @@ export type DatetimeFilter = {
 
 export type PostFilter = {
   title?: InputMaybe<StringFilter>;
-  slug?: InputMaybe<StringFilter>;
-  excerpt?: InputMaybe<StringFilter>;
-  date?: InputMaybe<DatetimeFilter>;
-  updatedDate?: InputMaybe<DatetimeFilter>;
-  tags?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
   draft?: InputMaybe<BooleanFilter>;
+  excerpt?: InputMaybe<StringFilter>;
+  published?: InputMaybe<DatetimeFilter>;
+  tags?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<StringFilter>;
 };
 
 export type PostConnectionEdges = {
@@ -913,12 +919,12 @@ export type SocialLinksMutation = {
 
 export type PostMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  excerpt?: InputMaybe<Scalars['String']['input']>;
-  date?: InputMaybe<Scalars['String']['input']>;
-  updatedDate?: InputMaybe<Scalars['String']['input']>;
-  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  published?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type SettingsPartsFragment = { __typename: 'Settings', title: string, description: string, footerText?: string | null };
@@ -935,7 +941,7 @@ export type TestimonialPartsFragment = { __typename: 'Testimonial', from: string
 
 export type SocialLinksPartsFragment = { __typename: 'SocialLinks', links?: Array<{ __typename: 'SocialLinksLinks', name: string, icon: string, url: string, content: string, joined: string, active: string } | null> | null };
 
-export type PostPartsFragment = { __typename: 'Post', title: string, slug: string, excerpt?: string | null, date: string, updatedDate?: string | null, tags?: Array<string | null> | null, draft?: boolean | null };
+export type PostPartsFragment = { __typename: 'Post', title: string, body?: any | null, draft?: boolean | null, excerpt?: string | null, published: string, tags?: Array<string | null> | null, slug: string };
 
 export type SettingsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1075,7 +1081,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, slug: string, excerpt?: string | null, date: string, updatedDate?: string | null, tags?: Array<string | null> | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PostQuery = { __typename?: 'Query', post: { __typename: 'Post', id: string, title: string, body?: any | null, draft?: boolean | null, excerpt?: string | null, published: string, tags?: Array<string | null> | null, slug: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1087,7 +1093,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, slug: string, excerpt?: string | null, date: string, updatedDate?: string | null, tags?: Array<string | null> | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename: 'Post', id: string, title: string, body?: any | null, draft?: boolean | null, excerpt?: string | null, published: string, tags?: Array<string | null> | null, slug: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const SettingsPartsFragmentDoc = gql`
     fragment SettingsParts on Settings {
@@ -1185,12 +1191,12 @@ export const PostPartsFragmentDoc = gql`
     fragment PostParts on Post {
   __typename
   title
-  slug
-  excerpt
-  date
-  updatedDate
-  tags
+  body
   draft
+  excerpt
+  published
+  tags
+  slug
 }
     `;
 export const SettingsDocument = gql`

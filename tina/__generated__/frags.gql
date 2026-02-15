@@ -86,10 +86,10 @@ fragment SocialLinksParts on SocialLinks {
 fragment PostParts on Post {
   __typename
   title
-  slug
-  excerpt
-  date
-  updatedDate
-  tags
+  body
   draft
+  excerpt
+  published
+  tags
+  slug
 }
