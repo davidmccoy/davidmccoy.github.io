@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.3.1",
     "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/typography": "^0.5.19",
     "@tinacms/cli": "^1.6.12",
     "astro": "^5.17.1",
     "gray-matter": "^4.0.3",

@@ -10,6 +10,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preload" href="/fonts/GeistVF.woff" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="/fonts/GeistMonoVF.woff" as="font" type="font/woff" crossorigin />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="canonical" href={canonicalURL} />
 <meta name="generator" content={Astro.generator} />

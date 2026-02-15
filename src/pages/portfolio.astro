@@ -100,7 +100,7 @@ const columnSizes = 'sm:grid-cols-[1fr_1fr_1fr_1fr]';
                 {!project.isAccessible && <p class="italic">No longer accessible</p>}
               </div>
             </div>
-            <div class="px-4 py-2" set:html={project.body} />
+            <div class="px-4 py-2 prose prose-sm max-w-none prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline" set:html={project.body} />
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,300px)_2fr] xl:grid-cols-[1fr_2fr_1fr] gap-2">
             <div></div>
@@ -188,7 +188,7 @@ const columnSizes = 'sm:grid-cols-[1fr_1fr_1fr_1fr]';
                 {!project.isAccessible && <p class="italic">No longer accessible</p>}
               </div>
             </div>
-            <div class="px-4 py-2" set:html={project.body} />
+            <div class="px-4 py-2 prose prose-sm max-w-none prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline" set:html={project.body} />
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,300px)_2fr] xl:grid-cols-[1fr_2fr_1fr] gap-2">
             <div></div>

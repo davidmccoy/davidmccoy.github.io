@@ -38,12 +38,6 @@ p {
   margin: 0 0 1rem;
 }
 
-.testimonial-text > h2 {
-  font-weight: 700;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  margin-bottom: 1rem;
-}
 
 /* Details/summary expand-collapse styling */
 details summary {

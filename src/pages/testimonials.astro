@@ -54,7 +54,7 @@ const columnSizes = 'sm:grid-cols-[1fr_1fr_1fr_1fr]';
         <div class="bg-gray-50">
           <div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] gap-4">
             <div></div>
-            <div class="py-2 px-3 testimonial-text" set:html={testimonial.body} />
+            <div class="py-2 px-3 prose prose-sm max-w-none" set:html={testimonial.body} />
             <div></div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] gap-4">
