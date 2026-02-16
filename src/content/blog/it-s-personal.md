@@ -3,6 +3,9 @@ title: It's Personal
 draft: false
 excerpt: Why spend time on a personal site in the age of walled gardens?
 published: 2025-11-11T10:24:00.000Z
+tags:
+  - side projects
+  - design
 slug: it-s-personal
 ---
 
