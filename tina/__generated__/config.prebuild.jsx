@@ -261,7 +261,7 @@ var config_default = defineConfig({
           filename: {
             readonly: true,
             slugify: (values) => {
-              return (values?.slug || "untitled").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+              return (values?.title || "untitled").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
             }
           },
           defaultItem: () => ({

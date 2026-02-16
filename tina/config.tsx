@@ -291,7 +291,7 @@ export default defineConfig({
           filename: {
             readonly: true,
             slugify: (values: Record<string, any>) => {
-              return (values?.slug || 'untitled')
+              return (values?.title || 'untitled')
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/^-|-$/g, '');
