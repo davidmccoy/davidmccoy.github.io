@@ -6,9 +6,10 @@ interface Props {
   published: string;
   excerpt?: string;
   tags?: string[];
+  filename?: string;
 }
 
-const { title, published, excerpt, tags } = Astro.props;
+const { title, published, excerpt, tags, filename } = Astro.props;
 
 const formatDate = (dateStr: string) => {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -19,16 +20,32 @@ const formatDate = (dateStr: string) => {
 };
 ---
 
-<BaseLayout title={`posts/${title}`} description={title} parentHref="/posts">
+<BaseLayout title="posts" description={title} parentHref="/posts" showIndexHeader={false} showParentDirectoryLink={false}>
   <article class="max-w-3xl">
     <div class="mb-6 border-b pb-4">
-      <h2 class="text-xl font-bold mb-1">{title}</h2>
-      {excerpt && <p class="text-sm text-gray-500 mb-2">{excerpt}</p>}
-      <div class="text-xs text-gray-500">
+      <h1 class="text-2xl font-bold mb-4">{title}</h1>
+      <div class="mb-4">
+        <a href="/posts" class="text-blue-600 hover:underline flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-1"><path d="m18 15-6-6-6 6"/></svg>
+          Parent Directory
+        </a>
+      </div>
+      {excerpt && <p class="text-sm text-gray-500 mb-4">{excerpt}</p>}
+      <div class="text-xs text-gray-500 mb-4 flex items-center gap-4">
         <span>Published: {formatDate(published)}</span>
+        {filename && (
+          <a
+            id="tina-edit-link"
+            href={`/admin/index.html#/collections/edit/post/${filename}`}
+            class="hidden text-gray-400 hover:text-blue-600 hover:underline inline-flex items-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 mr-1"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+            Edit
+          </a>
+        )}
       </div>
       {tags && tags.length > 0 && (
-        <div class="mt-2 flex gap-2 flex-wrap">
+        <div class="flex gap-2 flex-wrap">
           {tags.map((tag) => (
             <span class="text-xs bg-gray-100 px-2 py-1">{tag}</span>
           ))}
@@ -37,4 +54,14 @@ const formatDate = (dateStr: string) => {
     </div>
     <slot />
   </article>
+  <script>
+    const link = document.getElementById('tina-edit-link');
+    if (link) {
+      const hasTinaToken = document.cookie.split(';').some(c => c.trim().startsWith('tina_token'));
+      const isLocal = window.location.hostname === 'localhost';
+      if (hasTinaToken || isLocal) {
+        link.classList.remove('hidden');
+      }
+    }
+  </script>
 </BaseLayout>
