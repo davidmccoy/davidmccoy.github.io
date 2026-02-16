@@ -1,6 +1,6 @@
 ---
 title: It's Personal
-draft: true
+draft: false
 excerpt: Why spend time on a personal site in the age of walled gardens?
 published: 2025-11-11T10:24:00.000Z
 slug: it-s-personal
