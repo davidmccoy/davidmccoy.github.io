@@ -5,6 +5,13 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
+const renderer = new marked.Renderer();
+renderer.link = ({ href, title, text }) => {
+  const titleAttr = title ? ` title="${title}"` : '';
+  return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
+};
+marked.use({ renderer });
+
 export function getStaticPaths() {
   const blogDir = 'src/content/blog';
   if (!fs.existsSync(blogDir)) return [];
