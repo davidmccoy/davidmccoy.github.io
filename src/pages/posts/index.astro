@@ -27,6 +27,7 @@ if (fs.existsSync(blogDir)) {
 
 const columnNames = ['Title', 'Date', 'Tags'];
 const columnSizes = 'sm:grid-cols-[3fr_1fr_2fr]';
+const hasExcerpts = posts.some((p: any) => p.excerpt);
 
 const formatDate = (dateStr: string) => {
   const d = new Date(dateStr);
@@ -53,6 +54,9 @@ const formatDate = (dateStr: string) => {
               <FileText class="w-5 h-5 mr-2 flex-shrink-0" />
               {post.title}
             </a>
+            {post.excerpt && (
+              <div class="text-xs text-gray-500 mt-1 ml-7">{post.excerpt}</div>
+            )}
             <div class="sm:hidden text-xs text-gray-500 mt-1">
               {formatDate(post.published)}
             </div>

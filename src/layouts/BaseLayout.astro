@@ -8,12 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   showParentDirectoryLink?: boolean;
+  parentHref?: string;
 }
 
 const {
   title = '',
   description,
   showParentDirectoryLink = true,
+  parentHref,
 } = Astro.props;
 
 const pageTitle = title ? `David McCoy - ${title}` : 'David McCoy';
@@ -27,7 +29,7 @@ const h1Title = title ? `/david-mccoy/software-engineer/${title}` : '/david-mcco
   </head>
   <body class="font-mono text-sm p-4 bg-white min-h-screen antialiased">
     <h1 class="text-2xl font-bold mb-4">Index of {h1Title}</h1>
-    {showParentDirectoryLink && <ParentDirectoryLink />}
+    {showParentDirectoryLink && <ParentDirectoryLink href={parentHref} />}
     <div>
       <slot />
     </div>

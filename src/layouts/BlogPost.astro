@@ -4,10 +4,11 @@ import BaseLayout from './BaseLayout.astro';
 interface Props {
   title: string;
   published: string;
+  excerpt?: string;
   tags?: string[];
 }
 
-const { title, published, tags } = Astro.props;
+const { title, published, excerpt, tags } = Astro.props;
 
 const formatDate = (dateStr: string) => {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -18,10 +19,11 @@ const formatDate = (dateStr: string) => {
 };
 ---
 
-<BaseLayout title={`posts/${title}`} description={title}>
+<BaseLayout title={`posts/${title}`} description={title} parentHref="/posts">
   <article class="max-w-3xl">
     <div class="mb-6 border-b pb-4">
-      <h2 class="text-xl font-bold mb-2">{title}</h2>
+      <h2 class="text-xl font-bold mb-1">{title}</h2>
+      {excerpt && <p class="text-sm text-gray-500 mb-2">{excerpt}</p>}
       <div class="text-xs text-gray-500">
         <span>Published: {formatDate(published)}</span>
       </div>

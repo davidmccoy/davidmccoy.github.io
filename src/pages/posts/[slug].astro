@@ -10,6 +10,13 @@ renderer.link = ({ href, title, text }) => {
   const titleAttr = title ? ` title="${title}"` : '';
   return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
 };
+renderer.image = ({ href, title, text }) => {
+  const alt = text ? ` alt="${text}"` : '';
+  if (title) {
+    return `<figure><img src="${href}"${alt} /><figcaption>${title}</figcaption></figure>`;
+  }
+  return `<img src="${href}"${alt} />`;
+};
 marked.use({ renderer });
 
 export function getStaticPaths() {
@@ -27,6 +34,7 @@ export function getStaticPaths() {
         props: {
           title: data.title,
           published: data.published,
+          excerpt: data.excerpt,
           tags: data.tags,
           body: marked(body),
         },
@@ -35,9 +43,9 @@ export function getStaticPaths() {
     .filter(Boolean);
 }
 
-const { title, published, tags, body } = Astro.props;
+const { title, published, excerpt, tags, body } = Astro.props;
 ---
 
-<BlogPost title={title} published={published} tags={tags}>
+<BlogPost title={title} published={published} excerpt={excerpt} tags={tags}>
   <div class="prose prose-sm max-w-none prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline" set:html={body} />
 </BlogPost>
