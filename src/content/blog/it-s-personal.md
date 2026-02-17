@@ -17,7 +17,7 @@ When I bought my personal domain, I wanted to both avoid building a generic port
 
 Probably not, but I enjoyed building it anyway.
 
-# Restrictions Breed Creativity
+## Restrictions Breed Creativity
 
 Programming is, at its core, a creative act. That often gets lost in the day-to-day work of software engineering, but it really comes to the fore when you are working on personal projects.
 
@@ -33,7 +33,7 @@ If I'm being honest, this concept is only a small part of why I built my persona
 
 So I limited myself to a table-like layout with narrow rows and columns. Nothing fancy — no hero images, slideshows, image animations, etc — and a mono font styled with a very basic color palette.
 
-# Kitchen Table Issues
+## Kitchen Table Issues
 
 I learned to build my first websites back when web server directories that had an index.html were forced to use tables as the main way to achieve a non-standard layout. It's an absurd thought in today's age of CSS grid and flexbox, which have fully supplanted tables — even when building actual tables for a web page — but tables used to rule the web. But I never really felt like the transition to floats and clearfixes for layouts was that much of an improvement, at least until Bootstrap 3 made them predictable enough to commit to.
 
@@ -41,7 +41,7 @@ The visual layout of the default directory view is essentially a table, so falli
 
 The basic structure of the site was simple enough to translate to the default directory view, as that view was literally used to visualize the file system of a web server. The top-level pages would get their own links on the landing page, but figuring out the other parts of the site was where the fun was to be had: made-up server signatures in the footer, expanding table rows for details, etc.
 
-# The Latest Update
+## The Latest Update
 
 I think it turned out pretty well — except for the use of tables. As I return to the site more than 10 years after I wrote the first iteration, it is clear that the unpredictable nature of the table element no longer cuts it. Plus, AI tools have come a long way, and products like [v0](https://v0.dev/), [Claude 3.5 Sonnet](https://claude.ai/), and [Cursor](https://cursor.com/) make working on my side projects much more effective. So I've re-written the site with the help of those three tools and am quite pleased with where it ended up.
 

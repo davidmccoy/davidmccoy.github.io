@@ -1,10 +1,7 @@
 ---
 title: 'You Should (Probably) Read: Endymion by Dan Simmons'
 draft: false
-excerpt: >-
-  Your enjoyment of the conclusion to the Hyperion Cantos will likely hinge on
-  how interested you are in the larger story and characters that span the entire
-  series.
+excerpt: Your enjoyment of the conclusion to the Hyperion Cantos will likely hinge on how interested you are in the larger story and characters that span the entire series.
 published: 2022-04-26T17:26:00.000Z
 tags:
   - books
@@ -18,7 +15,7 @@ Enter Dan Simmons and Endymion, the 1996 follow-up to the Nebula and Locus award
 
 Simmons chose to evolve his formula for *Hyperion*’s sequel as *Endymion* takes place in the same universe but is set hundreds of years after the events of the first two books. The events and characters of the original story have faded into legend since the fall of humanity’s intergalactic empire at the conclusion of *The Fall of Hyperion*, though they continue to haunt *Endymion*'s story at various points. A resurgent Catholic Church, thanks to its mastery of the mysterious resurrection parasite called the cruciform, has filled the void left after the fall and has become the dominant political power in the universe in the form of a theocratic government called the Pax.
 
-# Even a Good Structure Can Collapse Under Its Own Weight
+## Even a Good Structure Can Collapse Under Its Own Weight
 
 The story uses a dual hunter/hunted point of view as its structure to tell the story of Raul Endymion and the messianic Aenea as they flee from Pax forces led by Father Captain Federico de Soya. The Pax believes that Aenea is a threat to the Church’s dominance in human affairs and has chosen de Soya to capture her. But Simmons tries the same trick with this book that he did with *Hyperion* and *The Fall of Hyperion*—it turns out that the 600 pages of Endymion are just the first half of the story. An additional 800 pages in *The Rise of Endymion* are required to complete the story.
 
@@ -26,13 +23,13 @@ The hunter/hunted structure serves *Endymion* well, as the cat-and-mouse game pr
 
 ![The original covers for Endymion and The Rise of Endymion.](/assets/endymion-rise-of-endymion-covers.jpg "The original covers for Endymion and The Rise of Endymion.")
 
-# Excellent Antagonists Chasing Flat Protagonists
+## Excellent Antagonists Chasing Flat Protagonists
 
 The de Soya and Pax plotlines are highlights throughout both books. They are tight, full of mystery and intrigue, and driven by interesting characters. (I have no idea why the Pax point of view is unceremoniously abandoned halfway through *The Rise of Endymion*.) Raul, on the other hand, is both the protagonist and the flattest, most uninteresting character in the story. This makes it particularly difficult to make it through the more plodding sections of *The Rise of Endymion*, so feel free to skim as you see fit.
 
 Aenea is more interesting as a quasi-messiah who can see potential futures. But her character falls prey to the lack of development that often afflicts characters who can see the future. Simmons (somehow) didn’t find the space in either book to deconstruct the ability to see the future and the impact that ability can have on a character (like Frank Herbert did with Paul Atreides in *Dune* and its sequels), leaving Aenea to conclude *The Rise of Endymion* as more or less in the same person as she was at the beginning of *Endymion*.
 
-# A Polarizing Sequel
+## A Polarizing Sequel
 
 The aforementioned issues help explain the polarized reception *Endymion* and *The Rise of Endymion* have received since their release in 1996 and 1998, respectively. The universe Simmons has created is still top-notch and worthy of additional stories set within it, but the story of *Endymion* and *The Rise of Endymion* is uneven and often boring. The antagonists—de Soya and his Pax allies—live up to the potential of the universe, while the protagonists fall far short as they meander their way towards the story’s climax.
 
