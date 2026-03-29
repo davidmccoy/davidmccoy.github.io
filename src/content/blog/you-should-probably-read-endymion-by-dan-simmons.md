@@ -1,6 +1,5 @@
 ---
 title: 'You Should (Probably) Read: Endymion by Dan Simmons'
-draft: false
 excerpt: Your enjoyment of the conclusion to the Hyperion Cantos will likely hinge on how interested you are in the larger story and characters that span the entire series.
 published: 2022-04-26T17:26:00.000Z
 tags:

@@ -21,7 +21,7 @@ if (fs.existsSync(blogDir)) {
         file: file.replace('.md', ''),
       };
     })
-    .filter((p: any) => !p.draft)
+    .filter((p: any) => p.published)
     .sort((a: any, b: any) => new Date(b.published).getTime() - new Date(a.published).getTime());
 }
 

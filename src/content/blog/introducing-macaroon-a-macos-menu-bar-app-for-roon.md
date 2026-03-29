@@ -1,7 +1,6 @@
 ---
 title: 'Introducing Macaroon, a macOS Menu Bar App For Roon'
 draft: true
-published: 2026-02-21T20:31:18.504Z
 slug: introducing-macaroon-a-macos-menu-bar-app-for-roon
 ---
 

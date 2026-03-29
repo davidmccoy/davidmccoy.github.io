@@ -1,6 +1,5 @@
 ---
 title: 'You Should Read: Hyperion by Dan Simmons'
-draft: false
 excerpt: >-
   Whether over, under, or properly rated, Hyperion stands out among the standard
   science fiction classics.
