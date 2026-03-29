@@ -1,8 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// Content is managed by TinaCMS and loaded via fs in pages.
-// These definitions suppress Astro's auto-generation warnings.
+// Content collections loaded from local Markdown/JSON files.
 const about = defineCollection({
   loader: glob({ pattern: '**/*.json', base: 'src/content/about' }),
   schema: z.any(),
