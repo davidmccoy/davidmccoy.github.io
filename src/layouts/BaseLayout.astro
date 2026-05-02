@@ -29,7 +29,7 @@ const h1Title = title ? `/david-mccoy/${title}` : '/david-mccoy/software-enginee
   <head>
     <BaseHead title={pageTitle} description={description} />
   </head>
-  <body class="font-mono text-sm p-4 bg-white min-h-screen antialiased">
+  <body class="font-mono p-4 bg-white min-h-screen antialiased">
     {showIndexHeader && <h1 class="text-2xl font-bold mb-4">Index of {h1Title}</h1>}
     {showParentDirectoryLink && <ParentDirectoryLink href={parentHref} />}
     <div>
