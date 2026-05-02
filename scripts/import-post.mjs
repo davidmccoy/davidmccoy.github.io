@@ -21,7 +21,7 @@
  * The publish date and title are derived from the filename: "2026-02-22 My Post Title.md"
  */
 
-import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync, readdirSync } from "fs";
+import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync, readdirSync, watch } from "fs";
 import { resolve, dirname, basename, extname, join } from "path";
 
 const ROOT = resolve(dirname(new URL(import.meta.url).pathname), "..");
@@ -45,6 +45,7 @@ function parseArgs(args) {
   const opts = {
     file: null,
     dryRun: false,
+    watch: false,
     attachments: "attachments",
   };
 
@@ -52,6 +53,8 @@ function parseArgs(args) {
     const arg = args[i];
     if (arg === "--dry-run") {
       opts.dryRun = true;
+    } else if (arg === "--watch") {
+      opts.watch = true;
     } else if (arg === "--attachments") {
       opts.attachments = args[++i];
     } else if (!arg.startsWith("--")) {
@@ -117,7 +120,34 @@ function serializeFrontmatter(data) {
   return yaml;
 }
 
+function processWikiLinks(body) {
+  // Convert Obsidian wiki-links to standard Markdown links:
+  //   [[Post Title]]            → [Post Title](/posts/post-title)
+  //   [[Post Title|custom text]] → [custom text](/posts/post-title)
+  // Skip image embeds (![[...]]) — those are handled separately.
+  return body.replace(/(?<!!)\[\[([^\]]+)\]\]/g, (match, inner) => {
+    const parts = inner.split("|");
+    const target = parts[0].trim();
+    const display = (parts[1] || target).trim();
+    // Strip leading date prefix (e.g. "2026-02-22 Building Macaroon" → "Building Macaroon")
+    const { title } = parseFilename(target);
+    const slug = slugify(title);
+    return `[${display}](/posts/${slug})`;
+  });
+}
+
 function processImages(body, sourceDir, attachmentsFolder) {
+  // Convert Obsidian wiki-link embeds: ![[image.png]] or ![[image.png|caption]]
+  body = body.replace(/!\[\[([^\]]+)\]\]/g, (match, inner) => {
+    const pipeIdx = inner.indexOf("|");
+    if (pipeIdx !== -1) {
+      const filename = inner.slice(0, pipeIdx).trim();
+      const caption = inner.slice(pipeIdx + 1).trim();
+      return `![${caption}](${filename})`;
+    }
+    return `![](${inner})`;
+  });
+
   return body.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, pathAndTitle) => {
     const titleMatch = pathAndTitle.match(/^(.+?)\s+"([^"]*)"$/);
     let imgPath, title;
@@ -159,7 +189,10 @@ function processImages(body, sourceDir, attachmentsFolder) {
     }
 
     const newRef = `/assets/${destFilename}`;
-    return title ? `![${alt}](${newRef} "${title}")` : `![${alt}](${newRef})`;
+    if (alt) {
+      return `<figure><img src="${newRef}" alt="${alt}" /><figcaption>${alt}</figcaption></figure>`;
+    }
+    return title ? `![](${newRef} "${title}")` : `![](${newRef})`;
   });
 }
 
@@ -180,16 +213,22 @@ function importPost(filePath, opts) {
   const { date, title } = parseFilename(filePath);
   const slug = data.slug || slugify(title);
 
+  const isPublished = data.published === true;
+
   const frontmatter = {
     title,
     excerpt: data.excerpt || "",
-    published: date || new Date().toISOString().slice(0, 10),
     tags: data.tags || [],
     slug,
   };
 
+  if (isPublished) {
+    frontmatter.published = date || new Date().toISOString().slice(0, 10);
+  }
+
   const sourceDir = dirname(filePath);
-  const processedBody = opts.dryRun ? body : processImages(body, sourceDir, opts.attachments);
+  const linkedBody = processWikiLinks(body);
+  const processedBody = opts.dryRun ? linkedBody : processImages(linkedBody, sourceDir, opts.attachments);
 
   mkdirSync(BLOG_DIR, { recursive: true });
   mkdirSync(ASSETS_DIR, { recursive: true });
@@ -205,7 +244,7 @@ function importPost(filePath, opts) {
     console.log(`  Written: src/content/blog/${outputFilename}`);
   }
 
-  return { title: frontmatter.title, slug, published: frontmatter.published };
+  return { title: frontmatter.title, slug, published: frontmatter.published || null, isDraft: !isPublished };
 }
 
 function syncAll(opts) {
@@ -223,33 +262,58 @@ function syncAll(opts) {
   }
 
   let published = 0;
-  let skipped = 0;
+  let drafts = 0;
 
   for (const file of files) {
     const filePath = join(OBSIDIAN_BLOG_DIR, file);
-    const raw = readFileSync(filePath, "utf-8");
-    const { data } = parseFrontmatter(raw);
 
-    if (data.published !== true) {
-      skipped++;
-      continue;
-    }
+    const status = (() => {
+      const raw = readFileSync(filePath, "utf-8");
+      const { data } = parseFrontmatter(raw);
+      return data.published === true ? "published" : "draft";
+    })();
 
-    console.log(`\nPublishing: ${file}`);
+    console.log(`\nImporting (${status}): ${file}`);
     const result = importPost(filePath, opts);
     console.log(`  Title: ${result.title}`);
-    console.log(`  Date: ${result.published}`);
-    published++;
+    if (result.published) console.log(`  Date: ${result.published}`);
+    status === "published" ? published++ : drafts++;
   }
 
-  console.log(`\nDone. ${published} published, ${skipped} skipped (not marked as published).`);
+  console.log(`\nDone. ${published} published, ${drafts} drafts imported.`);
+}
+
+function watchObsidian(opts) {
+  if (!existsSync(OBSIDIAN_BLOG_DIR)) {
+    console.error(`Obsidian blog directory not found: ${OBSIDIAN_BLOG_DIR}`);
+    process.exit(1);
+  }
+
+  console.log(`Watching: ${OBSIDIAN_BLOG_DIR}`);
+
+  let debounceTimer = null;
+  watch(OBSIDIAN_BLOG_DIR, { recursive: true }, (eventType, filename) => {
+    if (!filename || !filename.endsWith(".md")) return;
+
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const filePath = join(OBSIDIAN_BLOG_DIR, filename);
+      if (!existsSync(filePath)) return;
+
+      console.log(`\nFile changed: ${filename}`);
+      try {
+        importPost(filePath, opts);
+      } catch (err) {
+        console.error(`  Error importing ${filename}: ${err.message}`);
+      }
+    }, 500);
+  });
 }
 
 function main() {
   const opts = parseArgs(process.argv.slice(2));
 
   if (opts.file) {
-    // Single file mode
     const filePath = resolve(opts.file);
     if (!existsSync(filePath)) {
       console.error(`File not found: ${filePath}`);
@@ -262,8 +326,11 @@ function main() {
     console.log(`  Slug: ${result.slug}`);
     console.log(`  Published: ${result.published}`);
   } else {
-    // Sync all published posts from Obsidian
     syncAll(opts);
+
+    if (opts.watch) {
+      watchObsidian(opts);
+    }
   }
 }
 
