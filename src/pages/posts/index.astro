@@ -21,8 +21,12 @@ if (fs.existsSync(blogDir)) {
         file: file.replace('.md', ''),
       };
     })
-    .filter((p: any) => p.published)
-    .sort((a: any, b: any) => new Date(b.published).getTime() - new Date(a.published).getTime());
+    .filter((p: any) => p.published || import.meta.env.DEV)
+    .sort((a: any, b: any) => {
+      if (!a.published) return -1;
+      if (!b.published) return 1;
+      return new Date(b.published).getTime() - new Date(a.published).getTime();
+    });
 }
 
 const columnNames = ['Title', 'Date', 'Tags'];
@@ -53,15 +57,16 @@ const formatDate = (dateStr: string) => {
             >
               <FileText class="w-5 h-5 mr-2 flex-shrink-0" />
               {post.title}
+              {!post.published && <span class="ml-2 text-xs bg-yellow-200 text-yellow-800 px-1.5 py-0.5 rounded font-normal">DRAFT</span>}
             </a>
             {post.excerpt && (
               <div class="text-xs text-gray-500 mt-1 ml-7">{post.excerpt}</div>
             )}
             <div class="sm:hidden text-xs text-gray-500 mt-1">
-              {formatDate(post.published)}
+              {post.published ? formatDate(post.published) : 'Draft'}
             </div>
           </div>
-          <div class="p-4 hidden sm:block">{formatDate(post.published)}</div>
+          <div class="p-4 hidden sm:block">{post.published ? formatDate(post.published) : 'Draft'}</div>
           <div class="p-4 hidden sm:block truncate">
             {post.tags?.join(', ')}
           </div>
